@@ -159,6 +159,12 @@
     .bonus-block strong{display:block;font-size:13px;font-weight:900;color:var(--red)}
     .bonus-block span{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:1px}
 
+    /* BENEFICIOS DEL SERVICIO */
+    .plan-benefits{min-height:104px;margin:14px 0 0;padding:12px 13px;border:1px solid #e7eef0;border-radius:14px;background:#f8fcfc;display:flex;flex-direction:column;justify-content:center;gap:7px}
+    .plan-benefit{display:flex;align-items:flex-start;gap:7px;color:#344054;font-size:11px;font-weight:700;line-height:1.3}
+    .plan-benefit svg{width:15px;height:15px;flex:0 0 15px;margin-top:0;color:#0aa6a6;stroke:currentColor}
+    .plan-benefit strong{color:var(--ink);font-weight:900}
+
     /* INCLUDES */
     .includes{margin-top:auto;padding-top:18px}
     .includes-label{display:block;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
@@ -1514,6 +1520,32 @@
       iconBox.innerHTML = keys.map(key => serviceIcons[key]).join('');
       iconBox.setAttribute('aria-label',type === 'tv' ? 'Internet y televisión' : type === 'telefonia' ? 'Internet y telefonía' : type === 'trio' ? 'Internet, televisión y telefonía' : 'Internet');
       iconBox.removeAttribute('aria-hidden');
+    });
+
+    /* ===== BENEFICIOS SEGÚN EL TIPO DE PAQUETE ===== */
+    const benefitCheck = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.6 2.6L16.5 9"/></svg>';
+    document.querySelectorAll('.card').forEach(card => {
+      const type = card.dataset.type;
+      const planDescription = card.querySelector('.plan-tag-info span')?.textContent || '';
+      const isSuperior = /Superior Pro/i.test(planDescription);
+      const benefits = ['Velocidad de subida y bajada simétrica'];
+
+      if(type === 'telefonia' || type === 'trio'){
+        benefits.push('Llamadas ilimitadas a Claro');
+        benefits.push('<strong>1000 minutos</strong> a destinos nacionales');
+      }
+      if(type === 'tv' || type === 'trio'){
+        benefits.push(isSuperior ? '<strong>TV Superior Pro</strong>' : '<strong>TV Estándar Pro:</strong> 105 canales SD y HD');
+        benefits.push('Claro Video incluido');
+      }
+
+      const block = document.createElement('div');
+      block.className = 'plan-benefits';
+      block.setAttribute('aria-label','Beneficios del paquete');
+      block.innerHTML = benefits.map(text => `<div class="plan-benefit">${benefitCheck}<span>${text}</span></div>`).join('');
+      const includes = card.querySelector('.includes');
+      const request = card.querySelector('.request');
+      (includes || request)?.insertAdjacentElement('beforebegin',block);
     });
 
     /* ===== CARRUSEL DE BENEFICIOS INCLUIDOS + INSTALACIÓN ===== */
