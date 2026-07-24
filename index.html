@@ -59,8 +59,11 @@
     .tab.active .tab-icon{background:#fff;color:var(--red)}
 
     /* CARDS */
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch}
+    .plans-carousel{position:relative;margin-inline:-64px;padding-inline:64px}
+    .cards{display:flex;gap:20px;align-items:stretch;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px 2px 28px;overscroll-behavior-inline:contain}
+    .cards::-webkit-scrollbar{display:none}
     .card{border:1.5px solid var(--line);border-top:3px solid var(--red);border-radius:22px;padding:28px;background:#fff;position:relative;box-shadow:0 6px 22px #1018280a;display:flex;flex-direction:column;transition:transform .28s ease,box-shadow .2s ease,border-color .2s ease,opacity .35s ease,filter .35s ease;overflow:hidden}
+    .cards .card{flex:0 0 calc((100% - 40px)/3);min-width:0;scroll-snap-align:start}
     .card:hover{box-shadow:0 16px 40px rgba(227,38,46,.16);transform:translateY(-3px);border-color:rgba(227,38,46,.35)}
     .card:hover{border-top-color:var(--red)}
     .card.featured{border:2px solid var(--red);transform:none;box-shadow:0 18px 44px #e3262e14}
@@ -123,6 +126,15 @@
     /* PLANES SECTION BG */
     #planes{background:linear-gradient(180deg,#fff 0%,#f8f9fb 100%)}
     #planes .eyebrow{background:#fff0f1;color:var(--red);border-color:#ffc8ca}
+    .plans-arrow{position:absolute;z-index:8;top:50%;width:52px;height:52px;border:1px solid #ffd0d3;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.96);color:var(--red);box-shadow:0 12px 32px rgba(16,24,40,.16);cursor:pointer;transform:translateY(-50%);transition:transform .2s ease,background .2s ease,color .2s ease,opacity .2s ease}
+    .plans-arrow svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+    .plans-arrow:hover,.plans-arrow:focus-visible{background:var(--red);color:#fff;transform:translateY(-50%) scale(1.07);outline:none}
+    .plans-arrow:focus-visible{box-shadow:0 0 0 4px rgba(227,38,46,.2),0 12px 32px rgba(16,24,40,.16)}
+    .plans-arrow:disabled{opacity:.28;cursor:not-allowed;transform:translateY(-50%)}
+    .plans-arrow--prev{left:0}
+    .plans-arrow--next{right:0}
+    .plans-progress{height:4px;max-width:260px;margin:-12px auto 0;border-radius:999px;background:#e8eaee;overflow:hidden}
+    .plans-progress span{display:block;width:20%;height:100%;border-radius:inherit;background:var(--red);transform-origin:left center;transition:transform .2s ease}
 
     /* BENEFITS */
     .benefits{background:linear-gradient(180deg,#f8f9fb 0%,#fff 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -171,9 +183,16 @@
     #preguntas .eyebrow{background:#fff0f1;color:var(--red);border-color:#ffc8ca}
 
     /* FOOTER */
-    footer{padding:38px 0;background:#fff;border-top:1.5px solid var(--line)}
-    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:12px;color:var(--muted)}
-    .foot .brand{color:var(--ink)}
+    footer{padding:48px 0 28px;background:#121212;border-top:4px solid var(--red);color:#fff}
+    .foot{display:grid;grid-template-columns:minmax(260px,1.35fr) 1fr auto;gap:42px;align-items:start;font-size:13px;color:#aeb2ba}
+    .foot-company h2{margin:0 0 14px;color:#fff;font-size:25px;letter-spacing:-.03em}
+    .foot-company h2 span{color:var(--red)}
+    .foot-company p{max-width:510px;margin:0;line-height:1.7}
+    .foot-meta{display:grid;gap:8px;line-height:1.55}
+    .foot-meta strong{color:#fff;font-size:14px}
+    .foot-actions{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+    .foot .link-politica{color:#fff}
+    .foot-legal{grid-column:1/-1;padding-top:22px;border-top:1px solid #ffffff1a;display:flex;justify-content:space-between;gap:24px;font-size:11px;line-height:1.55;color:#888e98}
 
     /* WHATSAPP */
     .wa{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#20c76a;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 12px 32px #20c76a40;z-index:5;transition:.2s}
@@ -365,10 +384,14 @@
     /* RESPONSIVE (resto de la página) */
     @media(max-width:850px){
       .links{display:none}
-      .cards{grid-template-columns:1fr}
+      .plans-carousel{margin-inline:-42px;padding-inline:42px}
+      .cards .card{flex-basis:calc((100% - 20px)/2)}
+      .plans-arrow{width:46px;height:46px}
       .card.featured{transform:none}
       .benefit-grid{grid-template-columns:1fr 1fr}
       .contact{grid-template-columns:1fr;padding:30px}
+      .foot{grid-template-columns:1fr 1fr}
+      .foot-actions{align-items:flex-start}
     }
     @media(max-width:520px){
       .nav{height:76px}
@@ -377,8 +400,20 @@
       .benefit-grid{grid-template-columns:1fr}
       .contact{border-radius:22px;padding:22px 18px}
       .form{padding:20px 17px}
-      .foot{flex-direction:column;text-align:center}
+      .plans-carousel{margin-inline:-12px;padding-inline:12px}
+      .cards{scroll-padding-inline:0;padding-bottom:22px}
+      .cards .card{flex-basis:min(86vw,340px)}
+      .plans-arrow{display:none}
+      .plans-progress{margin-top:-8px}
+      .foot{grid-template-columns:1fr;gap:26px}
+      .foot-actions{align-items:flex-start}
+      .foot-legal{grid-column:1;flex-direction:column;gap:8px}
       .cards{gap:14px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .cards{scroll-behavior:auto}
+      .plans-arrow,.plans-progress span{transition:none}
     }
 
     /* ===== POLÍTICA DE PRIVACIDAD (modal) ===== */
@@ -615,7 +650,11 @@
           <button class="tab" data-filter="tv"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m8 2 4 3 4-3"/><path d="M8 22h8"/></svg></span>Internet + TV</button>
           <button class="tab" data-filter="trio"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11.5a11 11 0 0 1 14 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M12 18h.01"/></svg></span>Internet + TV + Teléfono</button>
         </div>
-        <div class="cards">
+        <div class="plans-carousel" aria-label="Carrusel de planes">
+          <button class="plans-arrow plans-arrow--prev" type="button" aria-label="Ver planes anteriores">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="cards" tabindex="0" aria-live="polite">
 
           <!-- ===== SOLO INTERNET (1 Play) ===== -->
           <article class="card" data-type="internet">
@@ -1233,6 +1272,11 @@
             <button class="btn request" data-plan="Internet + TV + Telefonía Superior Pro 200 Mbps">Solicitar plan</button>
           </article>
 
+          </div>
+          <button class="plans-arrow plans-arrow--next" type="button" aria-label="Ver más planes">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="plans-progress" aria-hidden="true"><span></span></div>
         </div>
         <p class="disclaimer">Precios referenciales sujetos a evaluación de cobertura y a las condiciones comerciales del operador.</p>
       </div>
@@ -1293,9 +1337,23 @@
 
   <footer>
     <div class="wrap foot">
-      <div class="brand"><img class="brand-mark" src="logo-claro.png" alt="Claro"> Conecta Hogar</div>
-      <span>© 2026 · Sitio informativo de asesoría comercial</span>
-      <button id="btnPolitica" class="link-politica">Política de privacidad</button>
+      <div class="foot-company">
+        <h2>Planes Hogar <span>online</span></h2>
+        <p>NETCONTACT S.A.C. es un distribuidor autorizado independiente que brinda asesoría para contratar planes Claro Hogar en todo el Perú, sujeto a cobertura y evaluación del operador.</p>
+      </div>
+      <div class="foot-meta">
+        <strong>Atención comercial</strong>
+        <span>Lunes a sábado · 9:00 a. m. a 7:00 p. m.</span>
+        <span>WhatsApp: 991 726 326</span>
+      </div>
+      <div class="foot-actions">
+        <a class="btn" href="https://wa.me/51991726326" target="_blank" rel="noopener">Hablar con un asesor</a>
+        <button id="btnPolitica" class="link-politica">Política de privacidad</button>
+      </div>
+      <div class="foot-legal">
+        <span>© 2026 NETCONTACT S.A.C. · RUC 20613732242</span>
+        <span>Sitio informativo independiente. No somos América Móvil Perú S.A.C. (Claro).</span>
+      </div>
     </div>
   </footer>
 
@@ -1497,12 +1555,54 @@
         const show = filter === 'all' || c.dataset.type === filter;
         c.style.display = show ? 'flex' : 'none';
       });
+      cardsGrid.scrollTo({left:0,behavior:reduceMotion ? 'auto' : 'smooth'});
+      requestAnimationFrame(updateCarouselControls);
     }
     tabs.forEach(t => t.addEventListener('click', () => {
       tabs.forEach(x => x.classList.remove('active'));
       t.classList.add('active');
       applyFilter(t.dataset.filter);
     }));
+    /* Carrusel: clic, teclado, gesto táctil y avance continuo al acercarse a una flecha. */
+    const prevPlan = document.querySelector('.plans-arrow--prev');
+    const nextPlan = document.querySelector('.plans-arrow--next');
+    const plansProgress = document.querySelector('.plans-progress span');
+    const visibleCards = () => cards.filter(card => card.style.display !== 'none');
+    const planStep = () => {
+      const firstVisible = visibleCards()[0];
+      return firstVisible ? firstVisible.getBoundingClientRect().width + 20 : cardsGrid.clientWidth;
+    };
+    function updateCarouselControls(){
+      const maxScroll = Math.max(0,cardsGrid.scrollWidth - cardsGrid.clientWidth);
+      const progress = maxScroll ? cardsGrid.scrollLeft / maxScroll : 0;
+      prevPlan.disabled = cardsGrid.scrollLeft <= 3;
+      nextPlan.disabled = cardsGrid.scrollLeft >= maxScroll - 3;
+      plansProgress.style.transform = `scaleX(${Math.max(.14,progress)})`;
+    }
+    function movePlans(direction){
+      cardsGrid.scrollBy({left:direction * planStep(),behavior:reduceMotion ? 'auto' : 'smooth'});
+    }
+    prevPlan.addEventListener('click',() => movePlans(-1));
+    nextPlan.addEventListener('click',() => movePlans(1));
+    cardsGrid.addEventListener('scroll',updateCarouselControls,{passive:true});
+    cardsGrid.addEventListener('keydown',event => {
+      if(event.key === 'ArrowLeft'){event.preventDefault();movePlans(-1)}
+      if(event.key === 'ArrowRight'){event.preventDefault();movePlans(1)}
+    });
+    [prevPlan,nextPlan].forEach((button,index) => {
+      let hoverAdvance;
+      const direction = index === 0 ? -1 : 1;
+      button.addEventListener('pointerenter',() => {
+        if(reduceMotion || matchMedia('(hover:none)').matches) return;
+        hoverAdvance = setInterval(() => {
+          if(button.disabled) return clearInterval(hoverAdvance);
+          movePlans(direction);
+        },700);
+      });
+      button.addEventListener('pointerleave',() => clearInterval(hoverAdvance));
+      button.addEventListener('pointercancel',() => clearInterval(hoverAdvance));
+    });
+    window.addEventListener('resize',updateCarouselControls,{passive:true});
     applyFilter('all');
 
     /* Desvanecimiento progresivo según la parte visible de cada plan. */
