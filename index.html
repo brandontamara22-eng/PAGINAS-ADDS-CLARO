@@ -541,10 +541,14 @@
     }
     @media(max-width:640px){
       .timed-lead-modal{padding:16px 12px calc(16px + env(safe-area-inset-bottom))}
-      .timed-lead-dialog{height:auto;max-height:calc(100dvh - 32px - env(safe-area-inset-bottom));grid-template-columns:1fr;grid-template-rows:clamp(145px,22vh,180px) auto;border-radius:22px;overflow-y:auto}
-      .timed-lead-promo{height:100%;background-size:100% auto;background-position:center 47%}
-      .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:20px 18px 18px;justify-content:flex-start}
-      .timed-lead-modal .hl-title{font-size:clamp(22px,7vw,28px);padding-inline:30px;margin-bottom:6px}
+      .timed-lead-dialog{display:block;height:auto;max-height:calc(100dvh - 32px - env(safe-area-inset-bottom));border-radius:22px;overflow-y:auto;background:#171717}
+      /* La creatividad contiene campos dibujados: se oculta en móvil para no duplicar el formulario real. */
+      .timed-lead-promo{display:none}
+      .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:56px 18px 20px;justify-content:flex-start;border-radius:22px;background:
+        radial-gradient(circle at 50% -15%,rgba(228,0,43,.32),transparent 46%),
+        linear-gradient(155deg,#211315 0%,#171717 48%,#111 100%)}
+      .timed-lead-modal .hero-lead::before{content:"OFERTA ESPECIAL";align-self:center;margin:0 auto 12px;padding:6px 12px;border:1px solid rgba(255,75,85,.55);border-radius:999px;color:#ff626b;font-size:10px;font-weight:900;letter-spacing:.12em}
+      .timed-lead-modal .hl-title{font-size:clamp(22px,7vw,28px);padding-inline:24px;margin-bottom:6px}
       .timed-lead-modal .hl-sub{font-size:13px;line-height:1.35;margin-bottom:12px}
       .timed-lead-modal .hl-form{gap:8px}
       .timed-lead-modal .hero-lead input[type="tel"],.timed-lead-modal .hero-lead input[type="text"]{min-height:46px;padding:10px 12px;font-size:16px}
