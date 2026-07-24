@@ -176,6 +176,8 @@
     .includes-set{display:flex;align-items:center;gap:10px;padding-right:10px}
     .includes-logo-frame{flex:0 0 100px;width:100px;height:58px;display:grid;place-items:center;padding:5px;border-radius:10px;background:transparent}
     .includes-logos img{width:100%;height:100%;object-fit:contain;display:block;filter:contrast(1.04) saturate(1.02)}
+    .includes-logo-frame:has(.claro-video-only){overflow:hidden}
+    .includes-logo-frame .claro-video-only{width:290%;max-width:none;transform:translateX(-33%);filter:contrast(1.08) saturate(1.06)}
     .includes-logos.is-static{display:flex;align-items:center;justify-content:center;gap:10px;padding-inline:12px}
     .includes-placeholder{pointer-events:none}
     .includes-placeholder .includes-label,.includes-placeholder .includes-logos{visibility:hidden}
@@ -750,11 +752,11 @@
           <p>Selecciona una categoría y encuentra la velocidad que acompaña tu ritmo.</p>
         </div>
         <div class="tabs">
-          <button class="tab active" data-filter="all"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Todos</button>
           <button class="tab" data-filter="internet"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M2 9a16 16 0 0 1 20 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><path d="M12 20h.01"/></svg></span>Internet</button>
           <button class="tab" data-filter="telefonia"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>Internet + Teléfono</button>
           <button class="tab" data-filter="tv"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m8 2 4 3 4-3"/><path d="M8 22h8"/></svg></span>Internet + TV</button>
           <button class="tab" data-filter="trio"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11.5a11 11 0 0 1 14 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M12 18h.01"/></svg></span>Internet + TV + Teléfono</button>
+          <button class="tab active" data-filter="all"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Todos</button>
         </div>
         <div class="plans-carousel" aria-label="Carrusel de planes">
           <button class="plans-arrow plans-arrow--prev" type="button" aria-label="Ver planes anteriores">
@@ -1528,15 +1530,14 @@
       const type = card.dataset.type;
       const planDescription = card.querySelector('.plan-tag-info span')?.textContent || '';
       const isSuperior = /Superior Pro/i.test(planDescription);
-      const benefits = ['Velocidad de subida y bajada simétrica'];
+      const benefits = ['Velocidad de subida y bajada simétrica', 'Claro Video incluido'];
 
       if(type === 'telefonia' || type === 'trio'){
         benefits.push('Llamadas ilimitadas a Claro');
         benefits.push('<strong>1000 minutos</strong> a destinos nacionales');
       }
       if(type === 'tv' || type === 'trio'){
-        benefits.push(isSuperior ? '<strong>TV Superior Pro</strong>' : '<strong>TV Estándar Pro:</strong> 105 canales SD y HD');
-        benefits.push('Claro Video incluido');
+        benefits.push(isSuperior ? '<strong>TV Superior Pro:</strong> 135 canales SD y HD' : '<strong>TV Estándar Pro:</strong> 105 canales SD y HD');
       }
 
       const block = document.createElement('div');
@@ -1568,6 +1569,9 @@
       }
     });
     document.querySelectorAll('.includes-logos').forEach((logos, index) => {
+      if(!logos.querySelector('.claro-video-only')){
+        logos.insertAdjacentHTML('afterbegin','<img class="claro-video-only" src="img/universal-transparent.png" alt="Claro Video" loading="lazy">');
+      }
       const assets = [...logos.querySelectorAll('img')];
       if(!assets.length) return;
 
