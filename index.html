@@ -7,7 +7,7 @@
   <title>Claro Hogar | Internet 100% Fibra Óptica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --red:#e3262e;
@@ -21,8 +21,9 @@
       --white:#ffffff;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:#fff}
+    html{scroll-behavior:smooth;overflow-x:clip}
+    body{margin:0;overflow-x:clip;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:#fff}
+    img{max-width:100%}
     button,input{font:inherit}
     a{text-decoration:none;color:inherit}
     .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
@@ -49,45 +50,95 @@
     .eyebrow:before{content:"";width:8px;height:8px;background:var(--red);border-radius:2px;transform:rotate(45deg);flex-shrink:0}
 
     /* TABS */
-    .tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:35px}
-    .tab{border:1.5px solid var(--line);background:#fff;padding:11px 18px;border-radius:999px;font-weight:800;color:var(--muted);cursor:pointer;transition:.18s}
+    .tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:35px}
+    .tab{min-height:54px;display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--line);background:#fff;padding:10px 17px;border-radius:16px;font-weight:800;color:var(--muted);cursor:pointer;transition:.18s}
+    .tab-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#fff0f1;color:var(--red)}
+    .tab-icon svg{width:18px;height:18px;stroke:currentColor}
     .tab:hover{border-color:var(--red);color:var(--red)}
     .tab.active{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 6px 18px #e3262e28}
+    .tab.active .tab-icon{background:#fff;color:var(--red)}
 
     /* CARDS */
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-    .card{border:1.5px solid var(--line);border-top:3px solid var(--red);border-radius:22px;padding:28px;background:#fff;position:relative;box-shadow:0 6px 22px #1018280a;display:flex;flex-direction:column;transition:.2s}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch}
+    .card{border:1.5px solid var(--line);border-top:3px solid var(--red);border-radius:22px;padding:28px;background:#fff;position:relative;box-shadow:0 6px 22px #1018280a;display:flex;flex-direction:column;transition:transform .28s ease,box-shadow .2s ease,border-color .2s ease,opacity .35s ease,filter .35s ease;overflow:hidden}
     .card:hover{box-shadow:0 16px 40px rgba(227,38,46,.16);transform:translateY(-3px);border-color:rgba(227,38,46,.35)}
     .card:hover{border-top-color:var(--red)}
-    .card.featured{border:2px solid var(--red);transform:translateY(-8px);box-shadow:0 18px 44px #e3262e14}
-    .card.featured:hover{transform:translateY(-12px)}
+    .card.featured{border:2px solid var(--red);transform:none;box-shadow:0 18px 44px #e3262e14}
+    .card.featured:hover{transform:translateY(-3px)}
     .badge{position:absolute;right:18px;top:18px;background:var(--red);color:#fff;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:900}
-    .type{color:var(--muted);text-transform:uppercase;font-size:12px;font-weight:900;letter-spacing:.1em}
     .speed{font-size:42px;letter-spacing:-.05em;font-weight:900;margin:12px 0 3px;color:var(--ink)}
     .speed small{font-size:18px;color:var(--muted);font-weight:700}
-    .bonus{color:var(--red);font-weight:800;font-size:13px;min-height:38px}
-    .price{margin:24px 0 8px;display:flex;align-items:flex-start;color:var(--ink)}
     .currency{font-weight:900;margin-top:8px;font-size:16px}
     .amount{font-size:50px;line-height:1;font-weight:950;letter-spacing:-.06em}
     .cents{font-weight:900;margin-top:7px;font-size:16px}
-    .period{color:var(--muted);font-size:12px;align-self:flex-end;margin:0 0 6px 6px}
-    .features{list-style:none;padding:16px 0 20px;margin:10px 0 20px;border-top:1px solid var(--line);flex:1}
-    .features li{margin:12px 0;font-size:14px;display:flex;gap:9px;line-height:1.4;color:var(--ink)}
-    .features li:before{content:"✓";color:var(--green);font-weight:900;flex-shrink:0}
-    .card .btn{width:100%}
+    .card .btn{width:100%;margin-top:16px}
     .disclaimer{text-align:center;color:var(--muted);font-size:11px;margin-top:25px}
+
+    /* PLAN TAG (1/2/3 Play) */
+    .plan-tag{display:flex;align-items:center;gap:10px;min-height:40px}
+    .plan-tag-icon{min-width:38px;height:38px;padding:0 8px;border-radius:11px;background:#fff0f1;color:var(--red);display:flex;align-items:center;justify-content:center;gap:5px;flex-shrink:0;border:1px solid #ffc8ca}
+    .plan-tag-icon svg{width:17px;height:17px;display:block;stroke:currentColor}
+    .plan-tag-icon svg + svg{border-left:1px solid #ffc8ca;padding-left:5px;box-sizing:content-box}
+    .plan-tag-info{display:flex;flex-direction:column;gap:1px}
+    .plan-tag-info strong{font-size:14px;font-weight:900;color:var(--ink);letter-spacing:-.01em}
+    .plan-tag-info span{font-size:12px;color:var(--muted);font-weight:600}
+
+    /* PRICE */
+    .price-block{margin:20px 0 4px;min-height:92px}
+    .price-label{display:block;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+    .price-promo{display:flex;align-items:flex-start}
+    .price-promo .currency,.price-promo .amount,.price-promo .cents{color:var(--red)}
+    .price-promo.price-fixed .currency,.price-promo.price-fixed .amount,.price-promo.price-fixed .cents{color:var(--ink)}
+    .price-block .price-label + .price-promo{margin-top:4px}
+    .price-block .price-promo + .price-label{margin-top:6px}
+    .price-old{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+    .price-old s{text-decoration:line-through}
+
+    /* BONUS */
+    .bonus-block{margin:12px 0 0;min-height:38px}
+    .bonus-block strong{display:block;font-size:13px;font-weight:900;color:var(--red)}
+    .bonus-block span{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:1px}
+
+    /* INCLUDES */
+    .includes{margin-top:auto;padding-top:18px}
+    .includes-label{display:block;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+    .includes-logos{position:relative;display:block;min-height:78px;overflow:hidden;background:#eefcfb;border-top:1px solid #dff3f1;border-bottom:1px solid #dff3f1;margin-inline:-28px;padding:10px 0}
+    .includes-logos::before,.includes-logos::after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:28px;pointer-events:none}
+    .includes-logos::before{left:0;background:linear-gradient(90deg,#eefcfb,transparent)}
+    .includes-logos::after{right:0;background:linear-gradient(-90deg,#eefcfb,transparent)}
+    .includes-track{display:flex;width:max-content;animation:logos-scroll var(--logos-speed,18s) linear infinite;will-change:transform}
+    .includes-set{display:flex;align-items:center;gap:10px;padding-right:10px}
+    .includes-logo-frame{flex:0 0 100px;width:100px;height:58px;display:grid;place-items:center;padding:5px;border-radius:10px;background:transparent}
+    .includes-logos img{width:100%;height:100%;object-fit:contain;display:block;filter:contrast(1.04) saturate(1.02)}
+    .includes-logos.is-static{display:flex;align-items:center;justify-content:center;gap:10px;padding-inline:12px}
+    .includes-placeholder{pointer-events:none}
+    .includes-placeholder .includes-label,.includes-placeholder .includes-logos{visibility:hidden}
+    .includes-logos.is-static::before,.includes-logos.is-static::after{display:none}
+    .includes-logos:hover .includes-track{animation-play-state:paused}
+    .installation{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 -28px;padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink);font-size:13px}
+    .installation svg{width:17px;height:17px;stroke:var(--green);flex:0 0 auto}
+    .installation strong{font-weight:900}
+    @keyframes logos-scroll{to{transform:translateX(-50%)}}
 
     /* PLANES SECTION BG */
     #planes{background:linear-gradient(180deg,#fff 0%,#f8f9fb 100%)}
     #planes .eyebrow{background:#fff0f1;color:var(--red);border-color:#ffc8ca}
 
     /* BENEFITS */
-    .benefits{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .benefit{background:#fff;padding:26px;border-radius:18px;border:1px solid var(--line);box-shadow:0 4px 16px #1018280a}
-    .icon{width:48px;height:48px;border-radius:14px;background:#fff0f1;color:var(--red);display:grid;place-items:center;font-size:23px;border:1px solid #ffc8ca}
-    .benefit h3{margin:18px 0 8px;font-size:17px;color:var(--ink)}
-    .benefit p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .benefits{background:linear-gradient(180deg,#f8f9fb 0%,#fff 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .benefits .wrap{width:min(1280px,calc(100% - 40px))}
+    .benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .benefit{position:relative;z-index:1;min-height:285px;background:#fff;padding:34px 30px;border-radius:24px;border:1px solid var(--line);box-shadow:0 10px 30px #1018280a;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,background-color .24s ease}
+    .benefit:hover{z-index:3;transform:translateY(-8px) scale(1.04);background:#fff;border-color:var(--red);box-shadow:0 26px 56px rgba(227,38,46,.2)}
+    .icon{width:82px;height:82px;border-radius:22px;background:#fff1f2;color:var(--red);display:grid;place-items:center;border:1px solid #ffc8ca;transition:transform .24s ease,background-color .24s ease,box-shadow .24s ease}
+    .icon svg{width:42px;height:42px;stroke:currentColor}
+    .benefit:hover .icon{transform:scale(1.1);background:#ffe5e7;box-shadow:0 8px 20px rgba(227,38,46,.15)}
+    .icon--brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:.82;text-align:center}
+    .claro-brand{font-size:21px;font-weight:900;letter-spacing:-.06em;color:var(--red)}
+    .claro-brand::after{content:'';display:inline-block;width:7px;height:7px;margin-left:2px;vertical-align:top;background:currentColor;clip-path:polygon(40% 0,60% 0,60% 40%,100% 40%,100% 60%,60% 60%,60% 100%,40% 100%,40% 60%,0 60%,0 40%,40% 40%);transform:rotate(45deg)}
+    .claro-product{font-size:16px;font-weight:900;letter-spacing:-.04em;color:var(--ink)}
+    .benefit h3{margin:22px 0 10px;font-size:20px;color:var(--ink)}
+    .benefit p{max-width:245px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.65}
     .benefits .eyebrow{background:#fff0f1;color:var(--red);border-color:#ffc8ca}
 
     /* CONTACT */
@@ -186,7 +237,7 @@
     .header-ctas{margin-left:auto;display:flex;align-items:center;gap:10px}
     .btn-header-cta{display:inline-flex;align-items:center;background:var(--red);color:var(--white);font-size:14px;font-weight:700;padding:10px 22px;border-radius:var(--r-pill);box-shadow:var(--shadow-red);transition:background var(--tr),transform var(--tr)}
     .btn-header-cta:hover{background:var(--red-dark);transform:translateY(-1px)}
-    .burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:9px;border-radius:var(--r-sm);border:none;background:none;cursor:pointer;transition:background var(--tr)}
+    .burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;padding:9px;border-radius:var(--r-sm);border:none;background:none;cursor:pointer;transition:background var(--tr)}
     .burger:hover{background:var(--bg-light)}
     .burger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform var(--tr),opacity var(--tr)}
     .burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -199,7 +250,7 @@
     .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:min(320px,90vw);background:var(--white);z-index:400;display:flex;flex-direction:column;box-shadow:-8px 0 48px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)}
     .mobile-menu.is-open{transform:translateX(0)}
     .mm-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
-    .mm-close{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-sm);color:var(--dark);border:none;background:none;cursor:pointer;transition:background var(--tr)}
+    .mm-close{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-sm);color:var(--dark);border:none;background:none;cursor:pointer;transition:background var(--tr)}
     .mm-close:hover{background:var(--bg-light)}
     .mm-tabs{display:flex;border-bottom:1px solid var(--border)}
     .mm-tab{flex:1;padding:13px;text-align:center;font-size:14px;font-weight:600;color:var(--mid);border-bottom:3px solid transparent;transition:color var(--tr),border-color var(--tr)}
@@ -212,33 +263,35 @@
     .btn-mm-cta:hover{background:var(--red-dark)}
 
     /* HERO */
-    .hero{position:relative;background:linear-gradient(135deg,#130008 0%,#560010 40%,#b5001e 75%,#e4002b 100%);overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px;z-index:1;pointer-events:none}
+    .hero{position:relative;height:clamp(500px,27vw,1550px);min-height:0;background:#680013;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,0,6,.9) 0%,rgba(58,0,11,.68) 22%,rgba(68,0,12,.3) 42%,rgba(68,0,12,.08) 62%,rgba(68,0,12,.12) 100%),radial-gradient(circle,rgba(255,255,255,.035) 1px,transparent 1px);background-size:100% 100%,28px 28px;z-index:1;pointer-events:none}
+    .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(24,0,7,.26) 0%,rgba(35,2,11,.14) 20%,transparent 38%,transparent 72%,rgba(183,99,105,.08) 86%,rgba(177,94,100,.18) 100%)}
     .hero-glow{position:absolute;top:-80px;right:-80px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(255,100,100,.2) 0%,transparent 65%);filter:blur(40px);z-index:1;pointer-events:none}
-    .hero-inner{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;padding-top:64px;padding-bottom:64px;position:relative;z-index:2}
-    .hero-content{max-width:540px}
+    .hero-inner{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:40px;align-items:center;height:100%;min-height:0;padding-top:24px;padding-bottom:24px;position:relative;z-index:2}
+    .hero-content{max-width:410px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
     .logo{display:flex;align-items:center;gap:9px}
     .logo-mark{display:grid;place-items:center;flex-shrink:0}
     .logo-text{font-size:14px;font-weight:700;color:var(--dark);line-height:1.05;letter-spacing:-.01em}
     .logo-text strong{color:var(--red);font-weight:800}
     .hero-badge{display:inline-block;background:rgba(255,255,255,.14);color:rgba(255,255,255,.9);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 16px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.22);margin-bottom:22px}
-    .hero-content h1{font-size:clamp(30px,4vw,50px);font-weight:800;color:var(--white);line-height:1.12;margin-bottom:18px}
-    .hero-content h1 em{font-style:normal;color:#ff7090}
-    .hero-desc{font-size:17px;color:rgba(255,255,255,.82);line-height:1.65;margin-bottom:24px}
+    .hero-content h1{font-family:'Montserrat','Open Sans',system-ui,sans-serif;font-size:clamp(30px,3.25vw,47px);font-weight:900;letter-spacing:-.045em;color:var(--white);line-height:1.06;margin:0 0 14px}
+    .hero-content h1 em{font-style:normal;color:#ff8aa5;text-shadow:0 5px 24px rgba(255,73,116,.28)}
+    .hero-desc{font-size:16px;color:rgba(255,255,255,.86);line-height:1.55;margin-bottom:18px}
     .hero-desc strong{color:var(--white);font-weight:700}
-    .hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+    .hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
     .pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.11);color:rgba(255,255,255,.92);font-size:13px;font-weight:600;padding:6px 14px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.2)}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
     /* Imagen full-bleed a la derecha; se funde con el fondo rojo real vía máscara */
-    .hero-media{position:absolute;top:0;right:0;bottom:0;left:40%;z-index:1;pointer-events:none;overflow:hidden}
-    .hero-img{width:100%;height:100%;display:block;object-fit:cover;object-position:60% center;
-      -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 30%), linear-gradient(to top, transparent 0%, #000 18%);
+    .hero-media{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#6f2932}
+    .hero-media::before{content:"";position:absolute;inset:-24px;background:url('img/hero-panorama-clean.png') center/cover no-repeat;filter:blur(20px) saturate(.9);opacity:.9;transform:scale(1.025)}
+    .hero-media::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(58,8,18,.42) 0%,rgba(58,8,18,.12) 14%,transparent 30%,transparent 70%,rgba(125,55,64,.08) 86%,rgba(125,55,64,.28) 100%)}
+    .hero-img{position:absolute;z-index:1;top:0;left:50%;width:auto;max-width:none;height:100%;display:block;transform:translateX(-50%);object-fit:fill;opacity:1;filter:saturate(.98) contrast(.99);
+      -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 3%,rgba(0,0,0,.82) 7%,#000 13%,#000 87%,rgba(0,0,0,.82) 93%,rgba(0,0,0,.35) 97%,transparent 100%);
       -webkit-mask-composite:source-in;-webkit-mask-repeat:no-repeat;-webkit-mask-size:100% 100%;
-      mask-image:linear-gradient(to right, transparent 0%, #000 30%), linear-gradient(to top, transparent 0%, #000 18%);
-      mask-composite:intersect;mask-repeat:no-repeat;mask-size:100% 100%}
+      mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 3%,rgba(0,0,0,.82) 7%,#000 13%,#000 87%,rgba(0,0,0,.82) 93%,rgba(0,0,0,.35) 97%,transparent 100%);mask-repeat:no-repeat;mask-size:100% 100%}
 
     /* Formulario flotante sobre el banner (proporcional) */
-    .hero-lead{position:absolute;top:50%;right:40px;transform:translateY(-50%);z-index:5;width:318px;max-width:calc(100% - 48px);background:#fff;border-radius:18px;padding:20px 20px 22px;box-shadow:0 22px 55px rgba(0,0,0,.45)}
+    .hero-lead{position:absolute;top:50%;right:max(24px,calc((100vw - 1280px)/2));transform:translateY(-50%);z-index:5;width:292px;max-width:calc(100% - 48px);background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.78);border-radius:20px;padding:18px 18px 19px;box-shadow:0 22px 52px rgba(0,0,0,.3)}
     .hl-title{font-size:22px;font-weight:900;color:var(--red);text-align:center;line-height:1.1;margin:0 0 6px}
     .hl-sub{font-size:13px;font-weight:700;color:var(--dark);text-align:center;line-height:1.4;margin:0 0 14px}
     .hl-form{display:flex;flex-direction:column;gap:10px}
@@ -267,21 +320,24 @@
     .stat-sep{width:1px;height:44px;background:var(--border);flex-shrink:0}
 
     /* RESPONSIVE (imagen 1) */
-    @media(max-width:900px){
+    @media(max-width:1100px){
       .main-nav{display:none}
       .burger{display:flex}
       .btn-header-cta{display:none}
-      .hero-inner{grid-template-columns:1fr;text-align:center;gap:32px;padding-top:36px;padding-bottom:52px}
+      .hero{min-height:auto}
+      .hero{height:auto}
+      .hero-inner{grid-template-columns:1fr;text-align:center;gap:32px;min-height:auto;padding-top:36px;padding-bottom:38px}
       .hero-pills{justify-content:center}
       .hero-actions{justify-content:center}
-      .hero-media{position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;height:auto;margin:0 auto 8px;max-width:560px}
-      .hero-img{height:auto;aspect-ratio:16/9;object-position:center;
-        -webkit-mask-image:radial-gradient(135% 135% at 50% 50%, #000 52%, rgba(0,0,0,0) 92%);
+      .hero-media{position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;height:auto;margin:0 auto;max-width:none}
+      .hero-media::before,.hero-media::after{display:none}
+      .hero-img{position:relative;top:auto;left:auto;width:100%;max-width:100%;height:auto;display:block;transform:none;aspect-ratio:16/9;object-fit:cover;object-position:center;
+        -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);
         -webkit-mask-composite:source-over;
-        mask-image:radial-gradient(135% 135% at 50% 50%, #000 52%, rgba(0,0,0,0) 92%);
+        mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);
         mask-composite:add}
       .hero-content{max-width:none}
-      .hero-lead{position:static;top:auto;right:auto;transform:none;width:100%;max-width:420px;margin:24px auto 0}
+      .hero-lead{position:static;top:auto;right:auto;transform:none;width:min(420px,calc(100% - 32px));max-width:420px;margin:0 auto 36px}
       .hero-content{order:1}
       .hero-lead{width:100%;max-width:420px;margin:0 auto}
       .stat-sep{display:none}
@@ -295,6 +351,7 @@
       .hero-content h1{font-size:28px}
       .hero-actions{flex-direction:column}
       .hero-actions .btn{width:100%;text-align:center;justify-content:center}
+      .hero-img{aspect-ratio:16/9;object-fit:cover;object-position:center}
       .stats-inner{display:grid;grid-template-columns:1fr 1fr;background:var(--border);gap:1px;border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
       .stat-item{background:var(--white);border-radius:0;min-width:0}
       .stat-sep{display:none}
@@ -337,12 +394,51 @@
     .modal-contenido li{font-size:13.5px;line-height:1.6;color:#374151;margin:4px 0}
     .modal-contenido a{color:var(--red);font-weight:700;text-decoration:underline}
     .modal-fecha{margin-top:18px;font-size:12px;color:var(--muted);font-style:italic}
-    .modal-cerrar{position:absolute;top:16px;right:18px;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);font-size:24px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.2s}
+    .modal-cerrar{position:absolute;top:16px;right:18px;width:44px;height:44px;border:0;border-radius:50%;background:var(--soft);color:var(--ink);font-size:24px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.2s}
     .modal-cerrar:hover{background:var(--red);color:#fff}
+
+    /* FORMULARIO EMERGENTE TRAS 60 SEGUNDOS ACTIVOS */
+    .timed-lead-modal{position:fixed;inset:0;z-index:550;display:flex;align-items:center;justify-content:center;padding:clamp(28px,5vw,72px);background:rgba(12,0,3,.46);-webkit-backdrop-filter:blur(14px) brightness(.72) saturate(.78);backdrop-filter:blur(14px) brightness(.72) saturate(.78);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+    .timed-lead-modal.is-open{opacity:1;visibility:visible}
+    .timed-lead-dialog{position:relative;width:min(1050px,100%);height:min(560px,calc(100vh - 96px));display:grid;grid-template-columns:minmax(360px,479px) minmax(0,1fr);overflow:hidden;background:#171717;border:0;border-radius:26px;box-shadow:0 30px 84px rgba(0,0,0,.58);transform:translateY(18px) scale(.97);transition:transform .28s ease}
+    .timed-lead-modal.is-open .timed-lead-dialog{transform:none}
+    .timed-lead-close{position:absolute;z-index:8;top:16px;right:16px;width:48px;height:48px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff;font-size:30px;line-height:1;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.28);transition:transform .2s ease,background .2s ease}
+    .timed-lead-close:hover{transform:scale(1.08);background:var(--red-dark)}
+    .timed-lead-promo{min-width:0;height:100%;background-color:#650707;background-image:url('img/oferta-modal-natural-v2.png');background-position:left center;background-size:auto 100%;background-repeat:no-repeat}
+    .timed-lead-modal .hero-lead{box-sizing:border-box;position:relative;inset:auto;transform:none;width:100%;min-width:0;max-width:none;height:100%;margin:0;padding:clamp(42px,5vw,70px) clamp(28px,5vw,72px) 38px;border:0;border-radius:0;background:radial-gradient(circle at 50% 36%,#242424 0,#181818 58%,#121212 100%);color:#fff;box-shadow:none;display:flex;flex-direction:column;justify-content:center}
+    .timed-lead-modal .hl-title{max-width:520px;margin-inline:auto;font-family:'Montserrat','Open Sans',sans-serif;font-size:clamp(27px,3.1vw,42px);line-height:1.08;letter-spacing:-.035em;text-align:center;color:#fff}
+    .timed-lead-modal .hl-sub{max-width:520px;margin:0 auto 24px;font-size:clamp(14px,1.3vw,17px);line-height:1.45;text-align:center;color:#fff}
+    .timed-lead-modal .hero-lead input[type="tel"],.timed-lead-modal .hero-lead input[type="text"]{box-sizing:border-box;background:#1f1f1f;color:#fff;border:1.5px solid rgba(255,255,255,.72)}
+    .timed-lead-modal .hero-lead input::placeholder{color:#aeb0b5}
+    .timed-lead-modal .hl-note,.timed-lead-modal .hl-check{color:#e4e4e4}
+    .timed-lead-modal .hl-link{color:#ff4b55}
+    body.lead-modal-open{overflow:hidden}
+    @media(max-width:920px){
+      .timed-lead-dialog{grid-template-columns:minmax(300px,45%) minmax(0,1fr)}
+      .timed-lead-modal .hero-lead{padding-inline:clamp(22px,4vw,38px)}
+    }
+    @media(max-width:640px){
+      .timed-lead-modal{padding:10px}
+      .timed-lead-dialog{height:min(760px,calc(100vh - 20px));grid-template-columns:1fr;grid-template-rows:minmax(180px,34%) minmax(0,1fr);border-radius:22px;overflow-y:auto}
+      .timed-lead-promo{height:100%;background-size:auto 100%;background-position:left 38%}
+      .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:30px 20px 24px;justify-content:flex-start}
+      .timed-lead-modal .hl-title{font-size:clamp(24px,8vw,31px);padding-inline:26px}
+      .timed-lead-modal .hl-sub{margin-bottom:18px}
+      .timed-lead-close{top:10px;right:10px;width:44px;height:44px;font-size:27px}
+    }
+    @media(max-height:620px) and (min-width:641px){
+      .timed-lead-modal{padding:20px}
+      .timed-lead-dialog{height:calc(100vh - 40px);width:min(940px,100%);grid-template-columns:minmax(300px,43%) minmax(0,1fr)}
+      .timed-lead-modal .hero-lead{padding:58px 28px 22px}
+      .timed-lead-modal .hl-title{font-size:clamp(25px,3vw,34px)}
+      .timed-lead-modal .hl-sub{margin-bottom:14px}
+      .timed-lead-modal .hl-form{gap:8px}
+    }
 
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
       html{scroll-behavior:auto}
+      .includes-track{transform:none!important}
     }
   </style>
 </head>
@@ -364,10 +460,10 @@
         <a href="#" class="top-tab active">Personas</a>
       </div>
       <div class="top-bar-right">
-        <span class="top-info">
+        <a class="top-info" href="https://wa.me/51991726326?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20de%20internet" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp al 991 726 326">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          0800-000-00
-        </span>
+          991 726 326
+        </a>
         <div class="country-selector">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           Perú
@@ -433,7 +529,7 @@
     <section class="hero" aria-label="Banner principal Claro Hogar">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-media" aria-hidden="true">
-        <img src="img/imagen1.jpeg" alt="" class="hero-img" loading="eager">
+        <img src="img/hero-panorama-clean.png" alt="" class="hero-img" loading="eager">
       </div>
       <div class="container hero-inner">
         <div class="hero-content">
@@ -465,8 +561,8 @@
         <h3 class="hl-title">¡Te llamamos gratis!</h3>
         <p class="hl-sub">¡Déjanos tu número y te contamos todas las ofertas que tenemos para ti!</p>
         <form id="heroLeadForm" class="hl-form">
-          <input id="heroPhone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{9}" maxlength="9" placeholder="N° de Celular" autocomplete="tel" required>
-          <input id="heroDistrict" name="district" type="text" placeholder="Distrito (opcional)" autocomplete="address-level2">
+          <input id="heroPhone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{9}" maxlength="9" placeholder="N° de Celular" aria-label="Número de celular" autocomplete="tel" required>
+          <input id="heroDistrict" name="district" type="text" placeholder="Distrito (opcional)" aria-label="Distrito opcional" autocomplete="address-level2">
           <p class="hl-note">*Ingresa tu número sin anteponer el (51)</p>
           <label class="hl-check">
             <input type="checkbox" required>
@@ -513,336 +609,632 @@
           <p>Selecciona una categoría y encuentra la velocidad que acompaña tu ritmo.</p>
         </div>
         <div class="tabs">
-          <button class="tab active" data-filter="all">Todos</button>
-          <button class="tab" data-filter="internet">Solo Internet</button>
-          <button class="tab" data-filter="telefonia">Internet + Teléfono</button>
-          <button class="tab" data-filter="cable-estandar">Internet + TV Estándar</button>
-          <button class="tab" data-filter="cable-superior">Internet + TV Superior</button>
-          <button class="tab" data-filter="trio-estandar">Trío Estándar</button>
-          <button class="tab" data-filter="trio-superior">Trío Superior</button>
+          <button class="tab active" data-filter="all"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Todos</button>
+          <button class="tab" data-filter="internet"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M2 9a16 16 0 0 1 20 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><path d="M12 20h.01"/></svg></span>Internet</button>
+          <button class="tab" data-filter="telefonia"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>Internet + Teléfono</button>
+          <button class="tab" data-filter="tv"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m8 2 4 3 4-3"/><path d="M8 22h8"/></svg></span>Internet + TV</button>
+          <button class="tab" data-filter="trio"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11.5a11 11 0 0 1 14 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M12 18h.01"/></svg></span>Internet + TV + Teléfono</button>
         </div>
         <div class="cards">
 
-          <!-- SOLO INTERNET -->
+          <!-- ===== SOLO INTERNET (1 Play) ===== -->
           <article class="card" data-type="internet">
-            <span class="type">Solo Internet</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">69</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 400 Mbps</li><li>Repetidor WiFi 360 incluido</li><li>Precio regular después de la promo: S/89.90/mes</li></ul>
-            <button class="btn request" data-plan="Solo Internet 1000 Mbps (400 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="internet" data-cheapest="true">
-            <span class="type">Solo Internet</span>
-            <div class="speed">400 <small>Mbps</small></div>
-            <div class="bonus">El plan más económico de Internet</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">69</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 200 Mbps</li><li>Ideal para 2 a 3 dispositivos</li></ul>
-            <button class="btn request" data-plan="Solo Internet 400 Mbps (200 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="internet">
-            <span class="type">Solo Internet</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">79</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 500 Mbps</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Precio regular después de la promo: S/110.90/mes</li></ul>
-            <button class="btn request" data-plan="Solo Internet 1000 Mbps (500 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card featured" data-type="internet">
-            <span class="badge">MÁS ELEGIDO</span>
-            <span class="type">Solo Internet</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">99</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 850 Mbps</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Precio regular después de la promo: S/125.90/mes</li></ul>
-            <button class="btn request" data-plan="Solo Internet 1000 Mbps (850 Mbps real)">Solicitar plan</button>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
+            <div class="speed">1500 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">200</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Solo Internet 1500 Mbps">Solicitar plan</button>
           </article>
 
           <article class="card" data-type="internet">
-            <span class="type">Solo Internet</span>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
             <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">100</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 800 Mbps</li><li>Repetidor WiFi 360 incluido</li></ul>
-            <button class="btn request" data-plan="Solo Internet 1000 Mbps (800 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="internet">
-            <span class="type">Solo Internet</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">Precio promocional por 6 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">119</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Precio regular después de la promo: S/145.90/mes</li></ul>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">119</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 145.00</s> mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
             <button class="btn request" data-plan="Solo Internet 1000 Mbps">Solicitar plan</button>
           </article>
 
           <article class="card" data-type="internet">
-            <span class="type">Solo Internet</span>
-            <div class="speed">1500 <small>Mbps</small></div>
-            <div class="bonus">Incluye Liga 1 Max y Repetidor 360</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">200</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Ideal para hogares con alto consumo</li></ul>
-            <button class="btn request" data-plan="Solo Internet 1500 Mbps">Solicitar plan</button>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
+            <div class="speed">850 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">99</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 125.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Solo Internet 850 Mbps">Solicitar plan</button>
           </article>
 
-          <!-- INTERNET + TELÉFONO -->
-          <article class="card" data-type="telefonia">
-            <span class="type">Internet + Teléfono</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">74</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 400 Mbps</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo incluido</li><li>Precio regular después de la promo: S/94.90/mes</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 1000 Mbps (400 Mbps real)">Solicitar plan</button>
+          <article class="card" data-type="internet">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
+            <div class="speed">800 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">100</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Solo Internet 800 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="telefonia" data-cheapest="true">
-            <span class="type">Internet + Teléfono</span>
-            <div class="speed">400 <small>Mbps</small></div>
-            <div class="bonus">El plan más económico con teléfono</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">74</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 200 Mbps</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 400 Mbps (200 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card featured" data-type="telefonia">
+          <article class="card featured" data-type="internet" data-cheapest="true">
             <span class="badge">MÁS ELEGIDO</span>
-            <span class="type">Internet + Teléfono</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">90</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 500 Mbps</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo incluido</li><li>Precio regular después de la promo: S/115.90/mes</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 1000 Mbps (500 Mbps real)">Solicitar plan</button>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
+            <div class="speed">500 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">79</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 110.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Solo Internet 500 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="internet">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
+            <div class="speed">400 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">69</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 89.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Solo Internet 400 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="internet">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>1 Play</strong><span>Solo Internet</span></span>
+            </div>
+            <div class="speed">200 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">69</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 400 Mbps</strong><span>Los primeros 6 meses</span></div>
+            <button class="btn request" data-plan="Solo Internet 200 Mbps">Solicitar plan</button>
+          </article>
+
+          <!-- ===== INTERNET + TELEFONÍA (2 Play) ===== -->
+          <article class="card" data-type="telefonia">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
+            <div class="speed">1500 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">205</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + Telefonía 1500 Mbps">Solicitar plan</button>
           </article>
 
           <article class="card" data-type="telefonia">
-            <span class="type">Internet + Teléfono</span>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
             <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">105</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 800 Mbps</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 1000 Mbps (800 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">150</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + Telefonía 1000 Mbps">Solicitar plan</button>
           </article>
 
           <article class="card" data-type="telefonia">
-            <span class="type">Internet + Teléfono</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">130</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 850 Mbps</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 1000 Mbps (850 Mbps real)">Solicitar plan</button>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
+            <div class="speed">850 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">130</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + Telefonía 850 Mbps">Solicitar plan</button>
           </article>
 
           <article class="card" data-type="telefonia">
-            <span class="type">Internet + Teléfono</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">Con teléfono fijo incluido</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">150</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo con llamadas nacionales</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 1000 Mbps">Solicitar plan</button>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
+            <div class="speed">800 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">105</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + Telefonía 800 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card featured" data-type="telefonia" data-cheapest="true">
+            <span class="badge">MÁS ELEGIDO</span>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
+            <div class="speed">500 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">90</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 115.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + Telefonía 500 Mbps">Solicitar plan</button>
           </article>
 
           <article class="card" data-type="telefonia">
-            <span class="type">Internet + Teléfono</span>
-            <div class="speed">1500 <small>Mbps</small></div>
-            <div class="bonus">Incluye Liga 1 Max y Repetidor 360</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">205</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo con llamadas nacionales</li></ul>
-            <button class="btn request" data-plan="Internet + Teléfono 1500 Mbps">Solicitar plan</button>
-          </article>
-
-          <!-- INTERNET + TV ESTÁNDAR -->
-          <article class="card" data-type="cable-estandar" data-cheapest="true">
-            <span class="type">Internet + TV Estándar</span>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
             <div class="speed">400 <small>Mbps</small></div>
-            <div class="bonus">El plan más económico con TV Estándar</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">89</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 200 Mbps</li><li>Liga 1 Max incluido</li><li>Precio regular después de la promo: S/150.90/mes</li></ul>
-            <button class="btn request" data-plan="Internet + TV Estándar 400 Mbps (200 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">74</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 94.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + Telefonía 400 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card featured" data-type="cable-estandar">
-            <span class="badge">MÁS ELEGIDO</span>
-            <span class="type">Internet + TV Estándar</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">109</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 400 Mbps</li><li>Repetidor WiFi 360 incluido</li><li>Liga 1 Max incluido</li><li>Precio regular después de la promo: S/170.90/mes</li></ul>
-            <button class="btn request" data-plan="Internet + TV Estándar 1000 Mbps (400 Mbps real)">Solicitar plan</button>
+          <article class="card" data-type="telefonia">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Telefonía</span></span>
+            </div>
+            <div class="speed">200 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">74</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 400 Mbps</strong><span>Los primeros 6 meses</span></div>
+            <button class="btn request" data-plan="Internet + Telefonía 200 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="cable-estandar">
-            <span class="type">Internet + TV Estándar</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">185</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 800 Mbps</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li></ul>
-            <button class="btn request" data-plan="Internet + TV Estándar 1000 Mbps (800 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="cable-estandar">
-            <span class="type">Internet + TV Estándar</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">Con Claro TV y Sound Box incluido</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">230</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li></ul>
-            <button class="btn request" data-plan="Internet + TV Estándar 1000 Mbps">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="cable-estandar">
-            <span class="type">Internet + TV Estándar</span>
+          <!-- ===== INTERNET + TV (2 Play) ===== -->
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Estándar Pro</span></span>
+            </div>
             <div class="speed">1500 <small>Mbps</small></div>
-            <div class="bonus">Incluye Claro TV y Sound Box</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">285</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li></ul>
-            <button class="btn request" data-plan="Internet + TV Estándar 1500 Mbps">Solicitar plan</button>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">285</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Estándar Pro 1500 Mbps">Solicitar plan</button>
           </article>
 
-          <!-- INTERNET + TV SUPERIOR -->
-          <article class="card featured" data-type="cable-superior">
-            <span class="badge">MÁS ELEGIDO</span>
-            <span class="type">Internet + TV Superior</span>
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Superior Pro</span></span>
+            </div>
+            <div class="speed">1500 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">255</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 325.00</s> mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Superior Pro 1500 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Estándar Pro</span></span>
+            </div>
             <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">155</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 800 Mbps</li><li>HBO Max incluido</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li></ul>
-            <button class="btn request" data-plan="Internet + TV Superior 1000 Mbps (800 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">230</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Estándar Pro 1000 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="cable-superior" data-cheapest="true">
-            <span class="type">Internet + TV Superior</span>
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Superior Pro</span></span>
+            </div>
+            <div class="speed">1000 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">200</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 270.00</s> mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Superior Pro 1000 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Estándar Pro</span></span>
+            </div>
+            <div class="speed">800 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">185</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Estándar Pro 800 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Superior Pro</span></span>
+            </div>
+            <div class="speed">800 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">155</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 225.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Superior Pro 800 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card featured" data-type="tv" data-cheapest="true">
+            <span class="badge">MÁS ELEGIDO</span>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Estándar Pro</span></span>
+            </div>
             <div class="speed">400 <small>Mbps</small></div>
-            <div class="bonus">El plan más económico con TV Superior</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">190</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 200 Mbps</li><li>HBO Max incluido</li><li>Liga 1 Max incluido</li></ul>
-            <button class="btn request" data-plan="Internet + TV Superior 400 Mbps (200 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">109</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 170.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Estándar Pro 400 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="cable-superior">
-            <span class="type">Internet + TV Superior</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">Precio promocional por 6 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">200</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li><li>HBO Max incluido</li><li>Precio regular después de la promo: S/270.90/mes</li></ul>
-            <button class="btn request" data-plan="Internet + TV Superior 1000 Mbps">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="cable-superior">
-            <span class="type">Internet + TV Superior</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">210</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 400 Mbps</li><li>HBO Max incluido</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li></ul>
-            <button class="btn request" data-plan="Internet + TV Superior 1000 Mbps (400 Mbps real)">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="cable-superior">
-            <span class="type">Internet + TV Superior</span>
-            <div class="speed">1500 <small>Mbps</small></div>
-            <div class="bonus">Precio promocional por 6 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">255</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li><li>HBO Max incluido</li><li>Precio regular después de la promo: S/325.90/mes</li></ul>
-            <button class="btn request" data-plan="Internet + TV Superior 1500 Mbps">Solicitar plan</button>
-          </article>
-
-          <!-- TRÍO ESTÁNDAR -->
-          <article class="card" data-type="trio-estandar" data-cheapest="true">
-            <span class="type">Trío Estándar</span>
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Superior Pro</span></span>
+            </div>
             <div class="speed">400 <small>Mbps</small></div>
-            <div class="bonus">El plan más económico del Trío Estándar</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">94</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 200 Mbps</li><li>Liga 1 Max incluido</li><li>Teléfono fijo incluido</li><li>Precio regular después de la promo: S/155.90/mes</li></ul>
-            <button class="btn request" data-plan="Trío Estándar 400 Mbps (200 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">210</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Superior Pro 400 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card featured" data-type="trio-estandar">
-            <span class="badge">MÁS ELEGIDO</span>
-            <span class="type">Trío Estándar</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">114</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 400 Mbps</li><li>Repetidor WiFi 360 incluido</li><li>Liga 1 Max incluido</li><li>Teléfono fijo incluido</li><li>Precio regular después de la promo: S/175.90/mes</li></ul>
-            <button class="btn request" data-plan="Trío Estándar 1000 Mbps (400 Mbps real)">Solicitar plan</button>
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Estándar Pro</span></span>
+            </div>
+            <div class="speed">200 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">89</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 150.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 400 Mbps</strong><span>Los primeros 6 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Estándar Pro 200 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="trio-estandar">
-            <span class="type">Trío Estándar</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">190</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 800 Mbps</li><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Trío Estándar 1000 Mbps (800 Mbps real)">Solicitar plan</button>
+          <article class="card" data-type="tv">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>2 Play</strong><span>Internet + Televisión · Superior Pro</span></span>
+            </div>
+            <div class="speed">200 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">190</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 400 Mbps</strong><span>Los primeros 6 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV Superior Pro 200 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="trio-estandar">
-            <span class="type">Trío Estándar</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">Con Claro TV, Sound Box y teléfono incluido</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">235</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Trío Estándar 1000 Mbps">Solicitar plan</button>
-          </article>
-
-          <article class="card" data-type="trio-estandar">
-            <span class="type">Trío Estándar</span>
+          <!-- ===== INTERNET + TV + TELEFONÍA (3 Play) ===== -->
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Estándar Pro</span></span>
+            </div>
             <div class="speed">1500 <small>Mbps</small></div>
-            <div class="bonus">Incluye Claro TV, Sound Box y teléfono</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">290</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Trío Estándar 1500 Mbps">Solicitar plan</button>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">290</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Estándar Pro 1500 Mbps">Solicitar plan</button>
           </article>
 
-          <!-- TRÍO SUPERIOR -->
-          <article class="card featured" data-type="trio-superior">
-            <span class="badge">MÁS ELEGIDO</span>
-            <span class="type">Trío Superior</span>
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Superior Pro</span></span>
+            </div>
+            <div class="speed">1500 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">260</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 330.00</s> mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Superior Pro 1500 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Estándar Pro</span></span>
+            </div>
             <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">160</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 800 Mbps</li><li>HBO Max incluido</li><li>Liga 1 Max incluido</li><li>Teléfono fijo incluido</li><li>Repetidor WiFi 360 incluido</li></ul>
-            <button class="btn request" data-plan="Trío Superior 1000 Mbps (800 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">235</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Estándar Pro 1000 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="trio-superior" data-cheapest="true">
-            <span class="type">Trío Superior</span>
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Superior Pro</span></span>
+            </div>
+            <div class="speed">1000 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">205</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 275.00</s> mensual</span>
+            </div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Superior Pro 1000 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Estándar Pro</span></span>
+            </div>
+            <div class="speed">800 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">190</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Estándar Pro 800 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Superior Pro</span></span>
+            </div>
+            <div class="speed">800 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">160</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 230.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/soundbox.png" alt="Sound Box" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Superior Pro 800 Mbps">Solicitar plan</button>
+          </article>
+
+          <article class="card featured" data-type="trio" data-cheapest="true">
+            <span class="badge">MÁS ELEGIDO</span>
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Estándar Pro</span></span>
+            </div>
             <div class="speed">400 <small>Mbps</small></div>
-            <div class="bonus">El plan más económico del Trío Superior</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">195</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 200 Mbps</li><li>HBO Max incluido</li><li>Liga 1 Max incluido</li><li>Teléfono fijo incluido</li></ul>
-            <button class="btn request" data-plan="Trío Superior 400 Mbps (200 Mbps real)">Solicitar plan</button>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">114</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 175.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Estándar Pro 400 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="trio-superior">
-            <span class="type">Trío Superior</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">Precio promocional por 6 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">205</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li><li>HBO Max incluido</li><li>Teléfono fijo incluido</li><li>Precio regular después de la promo: S/275.90/mes</li></ul>
-            <button class="btn request" data-plan="Trío Superior 1000 Mbps">Solicitar plan</button>
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Superior Pro</span></span>
+            </div>
+            <div class="speed">400 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">215</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 1000 Mbps</strong><span>Los primeros 12 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"><img src="img/repeptidor.png" alt="Repetidor WiFi 360" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Superior Pro 400 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="trio-superior">
-            <span class="type">Trío Superior</span>
-            <div class="speed">1000 <small>Mbps</small></div>
-            <div class="bonus">1000 Mbps contratado por 12 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">215</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Velocidad real garantizada: 400 Mbps</li><li>HBO Max incluido</li><li>Liga 1 Max incluido</li><li>Teléfono fijo incluido</li><li>Repetidor WiFi 360 incluido</li></ul>
-            <button class="btn request" data-plan="Trío Superior 1000 Mbps (400 Mbps real)">Solicitar plan</button>
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Estándar Pro</span></span>
+            </div>
+            <div class="speed">200 <small>Mbps</small></div>
+            <div class="price-block">
+              <span class="price-label">Precio mensual x 6 meses</span>
+              <div class="price-promo"><span class="currency">S/</span><span class="amount">94</span><span class="cents">.00</span></div>
+              <span class="price-old">Luego: <s>S/ 155.00</s> mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 400 Mbps</strong><span>Los primeros 6 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Estándar Pro 200 Mbps">Solicitar plan</button>
           </article>
 
-          <article class="card" data-type="trio-superior">
-            <span class="type">Trío Superior</span>
-            <div class="speed">1500 <small>Mbps</small></div>
-            <div class="bonus">Precio promocional por 6 meses</div>
-            <div class="price"><span class="currency">S/</span><span class="amount">260</span><span class="cents">.90</span><span class="period">al mes</span></div>
-            <ul class="features"><li>Liga 1 Max incluido</li><li>Repetidor WiFi 360 incluido</li><li>Claro TV incluido</li><li>Sound Box incluido</li><li>HBO Max incluido</li><li>Teléfono fijo incluido</li><li>Precio regular después de la promo: S/330.90/mes</li></ul>
-            <button class="btn request" data-plan="Trío Superior 1500 Mbps">Solicitar plan</button>
+          <article class="card" data-type="trio">
+            <div class="plan-tag">
+              <span class="plan-tag-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+              <span class="plan-tag-info"><strong>3 Play</strong><span>Internet + TV + Telefonía · Superior Pro</span></span>
+            </div>
+            <div class="speed">200 <small>Mbps</small></div>
+            <div class="price-block">
+              <div class="price-promo price-fixed"><span class="currency">S/</span><span class="amount">195</span><span class="cents">.00</span></div>
+              <span class="price-label">Precio regular mensual</span>
+            </div>
+            <div class="bonus-block"><strong>Bono de 400 Mbps</strong><span>Los primeros 6 meses</span></div>
+            <div class="includes">
+              <span class="includes-label">Incluye:</span>
+              <div class="includes-logos"><img src="img/l1_max.png" alt="Liga 1 Max" loading="lazy"><img src="img/hbo.png" alt="HBO Max" loading="lazy"></div>
+            </div>
+            <button class="btn request" data-plan="Internet + TV + Telefonía Superior Pro 200 Mbps">Solicitar plan</button>
           </article>
 
         </div>
-        <p class="disclaimer">Precios referenciales. Beneficios, disponibilidad y condiciones sujetos a evaluación de cobertura y operador.</p>
+        <p class="disclaimer">Precios referenciales sujetos a evaluación de cobertura y a las condiciones comerciales del operador.</p>
       </div>
     </section>
 
@@ -854,10 +1246,10 @@
           <h2>Más razones para conectarte</h2>
         </div>
         <div class="benefit-grid">
-          <div class="benefit"><div class="icon">⚡</div><h3>Mayor velocidad</h3><p>Disfruta videollamadas, streaming y juegos con mayor estabilidad.</p></div>
-          <div class="benefit"><div class="icon">⌂</div><h3>Para todo tu hogar</h3><p>Conecta celulares, televisores y computadoras al mismo tiempo.</p></div>
-          <div class="benefit"><div class="icon">◉</div><h3>Cobertura verificada</h3><p>Validamos disponibilidad técnica antes de coordinar tu instalación.</p></div>
-          <div class="benefit"><div class="icon">☻</div><h3>Ayuda personalizada</h3><p>Un asesor te acompaña para encontrar una alternativa conveniente.</p></div>
+          <article class="benefit"><div class="icon icon--brand" aria-hidden="true"><span class="claro-brand">Claro</span><span class="claro-product">video</span></div><h3>Claro Video</h3><p>Disfruta de miles de películas, series y conciertos en HD.</p></article>
+          <article class="benefit"><div class="icon icon--brand" aria-hidden="true"><span class="claro-brand">Claro</span><span class="claro-product">club</span></div><h3>Claro Club</h3><p>Disfruta de descuentos, promociones y más beneficios exclusivos para ti.</p></article>
+          <article class="benefit"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 13H3a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h2v-5H4ZM20 13h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2v-5h1Z"/><path d="M19 18c-.7 2-2.5 3-5 3"/><circle cx="12" cy="12" r="3"/><path d="M12 10.5V12l1 1"/></svg></div><h3>Atención 24/7</h3><p>Estamos para atenderte en cualquiera de nuestros canales de atención.</p></article>
+          <article class="benefit"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.2 17a9 9 0 1 1 15.6 0"/><path d="M7 17h10"/><path d="m12 13 4-5"/><circle cx="12" cy="13" r="1.4"/><path d="M6.4 9.5 8 10M17.6 9.5 16 10M12 4v2"/></svg></div><h3>Altas velocidades</h3><p>Navega en alta velocidad y disfruta de descargas ilimitadas.</p></article>
         </div>
       </div>
     </section>
@@ -941,7 +1333,7 @@
     </div>
   </div>
 
-  <a class="wa" href="https://wa.me/51987456123?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20de%20internet" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp al 987 456 123">
+  <a class="wa" href="https://wa.me/51991726326?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20de%20internet" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp al 991 726 326">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
@@ -949,6 +1341,74 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ===== ICONOS CORRECTOS SEGÚN EL TIPO DE PLAN ===== */
+    const serviceIcons = {
+      wifi:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M2 9a16 16 0 0 1 20 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><path d="M12 20h.01"/></svg>',
+      phone:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg>',
+      tv:'<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m8 2 4 3 4-3"/><path d="M8 22h8"/></svg>'
+    };
+    document.querySelectorAll('.card').forEach(card => {
+      const iconBox = card.querySelector('.plan-tag-icon');
+      if(!iconBox) return;
+      const type = card.dataset.type;
+      const keys = type === 'tv' ? ['wifi','tv'] : type === 'telefonia' ? ['wifi','phone'] : type === 'trio' ? ['wifi','tv','phone'] : ['wifi'];
+      iconBox.innerHTML = keys.map(key => serviceIcons[key]).join('');
+      iconBox.setAttribute('aria-label',type === 'tv' ? 'Internet y televisión' : type === 'telefonia' ? 'Internet y telefonía' : type === 'trio' ? 'Internet, televisión y telefonía' : 'Internet');
+      iconBox.removeAttribute('aria-hidden');
+    });
+
+    /* ===== CARRUSEL DE BENEFICIOS INCLUIDOS + INSTALACIÓN ===== */
+    const transparentLogoByFile = {
+      'repeptidor.png':'img/repetidor-transparent.png',
+      'soundbox.png':'img/soundbox-transparent.png',
+      'universal.png.png':'img/universal-transparent.png',
+      'hbo.png':'img/hbo-transparent.png',
+      'l1_max.png':'img/l1max-transparent.png'
+    };
+    /* Todas las tarjetas conservan las mismas filas aunque un plan no tenga bono o logos. */
+    document.querySelectorAll('.card').forEach(card => {
+      const price = card.querySelector('.price-block');
+      const request = card.querySelector('.request');
+      if(price && !card.querySelector('.bonus-block')){
+        price.insertAdjacentHTML('afterend','<div class="bonus-block bonus-placeholder" aria-hidden="true"><strong>&nbsp;</strong><span>&nbsp;</span></div>');
+      }
+      if(request && !card.querySelector('.includes')){
+        request.insertAdjacentHTML('beforebegin','<div class="includes includes-placeholder" aria-hidden="true"><span class="includes-label">Incluye:</span><div class="includes-logos is-static"></div></div>');
+      }
+    });
+    document.querySelectorAll('.includes-logos').forEach((logos, index) => {
+      const assets = [...logos.querySelectorAll('img')];
+      if(!assets.length) return;
+
+      assets.forEach(img => {
+        const fileName = img.getAttribute('src').split('/').pop();
+        if(transparentLogoByFile[fileName]) img.setAttribute('src',transparentLogoByFile[fileName]);
+      });
+
+      const setMarkup = assets.map(img => `<span class="includes-logo-frame">${img.outerHTML}</span>`).join('');
+      /* De uno a tres logos caben con aire; cuatro se desplazan suavemente. */
+      if(assets.length <= 3){
+        logos.classList.add('is-static');
+        logos.innerHTML = setMarkup;
+        logos.setAttribute('aria-label','Beneficio incluido en el plan');
+      }else{
+      logos.innerHTML = `<div class="includes-track" style="--logos-speed:${Math.max(14, assets.length * 5)}s"><div class="includes-set">${setMarkup}</div><div class="includes-set" aria-hidden="true">${setMarkup}</div></div>`;
+        logos.setAttribute('aria-label','Beneficios incluidos en el plan');
+        if(reduceMotion) logos.querySelector('.includes-track').style.animation = 'none';
+      }
+
+      const includes = logos.closest('.includes');
+      if(includes && !includes.nextElementSibling?.classList.contains('installation')){
+        includes.insertAdjacentHTML('afterend', `<div class="installation"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="10"/></svg><span>Instalación: <strong>gratis</strong> <small>(previa evaluación)</small></span></div>`);
+      }
+    });
+    document.querySelectorAll('.card').forEach(card => {
+      const includes = card.querySelector('.includes');
+      if(includes && !includes.nextElementSibling?.classList.contains('installation')){
+        includes.insertAdjacentHTML('afterend', `<div class="installation"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="10"/></svg><span>Instalación: <strong>gratis</strong> <small>(previa evaluación)</small></span></div>`);
+      }
+    });
 
     /* ===== MENÚ MÓVIL ===== */
     const burger     = document.getElementById('burger');
@@ -1020,10 +1480,21 @@
 
     /* ===== TABS + FILTRO DE TARJETAS (planes) ===== */
     const tabs = document.querySelectorAll('.tab');
-    const cards = document.querySelectorAll('.card');
+    const cards = [...document.querySelectorAll('.card')];
+    const cardsGrid = document.querySelector('.cards');
+
+    /* Orden comercial: precio actual mostrado, de menor a mayor. */
+    const getPlanPrice = card => {
+      const integer = Number((card.querySelector('.amount')?.textContent || '0').replace(/[^0-9]/g,''));
+      const decimal = Number((card.querySelector('.cents')?.textContent || '0').replace(/[^0-9]/g,''));
+      return integer + decimal / 100;
+    };
+    cards.sort((a,b) => getPlanPrice(a) - getPlanPrice(b));
+    cards.forEach(card => cardsGrid.appendChild(card));
+
     function applyFilter(filter){
       cards.forEach(c => {
-        const show = filter === 'all' ? c.dataset.cheapest === 'true' : c.dataset.type === filter;
+        const show = filter === 'all' || c.dataset.type === filter;
         c.style.display = show ? 'flex' : 'none';
       });
     }
@@ -1033,6 +1504,27 @@
       applyFilter(t.dataset.filter);
     }));
     applyFilter('all');
+
+    /* Desvanecimiento progresivo según la parte visible de cada plan. */
+    if('IntersectionObserver' in window && !reduceMotion){
+      const cardVisibilityObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const visibility = Math.max(.18,Math.min(1,.18 + entry.intersectionRatio * 1.18));
+          entry.target.style.opacity = visibility.toFixed(2);
+          entry.target.style.filter = `blur(${((1 - visibility) * 1.1).toFixed(2)}px)`;
+        });
+      },{
+        root:null,
+        rootMargin:'-6% 0px -10% 0px',
+        threshold:[0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1]
+      });
+      cards.forEach(card => {
+        card.style.opacity = '.18';
+        cardVisibilityObserver.observe(card);
+      });
+    }else{
+      cards.forEach(card => { card.style.opacity = '1'; card.style.filter = 'none'; });
+    }
 
     /* ===== BOTONES SOLICITAR ===== */
     document.querySelectorAll('.request').forEach(b => b.addEventListener('click', () => {
@@ -1131,6 +1623,56 @@
         }finally{
           button.disabled = false; button.textContent = 'Solicitar llamada';
         }
+      });
+    }
+
+    /* ===== FORMULARIO EMERGENTE: aparece tras 60 s con la página visible ===== */
+    const timedLead = document.querySelector('.hero-lead');
+    if(timedLead){
+      const originParent = timedLead.parentNode;
+      const originNext = timedLead.nextSibling;
+      const overlay = document.createElement('div');
+      overlay.className = 'timed-lead-modal';
+      overlay.setAttribute('role','dialog');
+      overlay.setAttribute('aria-modal','true');
+      overlay.setAttribute('aria-label','Solicita una llamada gratis');
+      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-promo" aria-label="Oferta increíble de Internet"></div></div>`;
+      document.body.appendChild(overlay);
+      const dialog = overlay.querySelector('.timed-lead-dialog');
+      const closeButton = overlay.querySelector('.timed-lead-close');
+      const timedTitle = timedLead.querySelector('.hl-title');
+      const timedSubtitle = timedLead.querySelector('.hl-sub');
+      const originalTitle = timedTitle?.textContent;
+      const originalSubtitle = timedSubtitle?.textContent;
+      let shown = false;
+      let previousFocus = null;
+
+      const openTimedLead = () => {
+        if(shown) return;
+        shown = true;
+        previousFocus = document.activeElement;
+        if(timedTitle) timedTitle.textContent = '¡No desaproveches esta oferta!';
+        if(timedSubtitle) timedSubtitle.textContent = 'Te llamamos gratis. Déjanos tu número y descubre las promociones disponibles para ti.';
+        dialog.appendChild(timedLead);
+        overlay.classList.add('is-open');
+        document.body.classList.add('lead-modal-open');
+        window.setTimeout(() => document.getElementById('heroPhone')?.focus(),280);
+      };
+      const closeTimedLead = () => {
+        if(!overlay.classList.contains('is-open')) return;
+        overlay.classList.remove('is-open');
+        document.body.classList.remove('lead-modal-open');
+        originParent.insertBefore(timedLead,originNext);
+        if(timedTitle) timedTitle.textContent = originalTitle;
+        if(timedSubtitle) timedSubtitle.textContent = originalSubtitle;
+        previousFocus?.focus?.();
+      };
+
+      window.setTimeout(openTimedLead,60000);
+      closeButton.addEventListener('click',closeTimedLead);
+      overlay.addEventListener('click',event => { if(event.target === overlay) closeTimedLead(); });
+      document.addEventListener('keydown',event => {
+        if(event.key === 'Escape' && !document.querySelector('.modal-politica.is-open')) closeTimedLead();
       });
     }
   </script>
