@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://planeshogar.com.pe/sitemap.xml
