@@ -176,13 +176,6 @@
     .includes-set{display:flex;align-items:center;gap:10px;padding-right:10px}
     .includes-logo-frame{flex:0 0 100px;width:100px;height:58px;display:grid;place-items:center;padding:5px;border-radius:10px;background:transparent}
     .includes-logos img{width:100%;height:100%;object-fit:contain;display:block;filter:contrast(1.04) saturate(1.02)}
-    .includes-logo-frame.logo-wordmark{font-family:Arial,Helvetica,sans-serif;color:#17191d;line-height:1;white-space:nowrap}
-    .logo-claro-video .wordmark-name{font-size:17px;font-weight:800;letter-spacing:-.8px}
-    .logo-claro-video .wordmark-name b{color:#e51c2a}
-    .logo-universal .wordmark-name{position:relative;display:inline-flex;align-items:center;justify-content:center;width:84px;height:42px;font-size:14px;font-weight:900;letter-spacing:-.8px}
-    .logo-universal .wordmark-name::before{content:"";position:absolute;inset:1px 9px;border:2px solid #17191d;border-left-color:transparent;border-right-color:transparent;border-radius:50%}
-    .logo-universal .wordmark-name b{position:relative;z-index:1}
-    .logo-universal .wordmark-name em{position:absolute;right:7px;bottom:0;font-size:18px;font-style:normal;font-weight:900}
     .includes-logos.is-static{display:flex;align-items:center;justify-content:center;gap:10px;padding-inline:12px}
     .includes-placeholder{pointer-events:none}
     .includes-placeholder .includes-label,.includes-placeholder .includes-logos{visibility:hidden}
@@ -1580,10 +1573,10 @@
         includesContainer.removeAttribute('aria-hidden');
       }
       if(!logos.querySelector('.universal-only')){
-        logos.insertAdjacentHTML('afterbegin','<img class="universal-only" src="img/universal-transparent.png" alt="Universal+" loading="lazy">');
+        logos.insertAdjacentHTML('afterbegin','<img class="universal-only" src="img/universal-plus-vector.svg" alt="Universal+" loading="lazy">');
       }
       if(!logos.querySelector('.claro-video-only')){
-        logos.insertAdjacentHTML('afterbegin','<img class="claro-video-only" src="img/universal-transparent.png" alt="Claro Video" loading="lazy">');
+        logos.insertAdjacentHTML('afterbegin','<img class="claro-video-only" src="img/claro-video-vector.svg" alt="Claro Video" loading="lazy">');
       }
       const assets = [...logos.querySelectorAll('img')];
       if(!assets.length) return;
@@ -1593,15 +1586,7 @@
         if(transparentLogoByFile[fileName]) img.setAttribute('src',transparentLogoByFile[fileName]);
       });
 
-      const setMarkup = assets.map(img => {
-        if(img.classList.contains('universal-only')){
-          return '<span class="includes-logo-frame logo-wordmark logo-universal" role="img" aria-label="Universal+"><span class="wordmark-name"><b>UNIVERSAL</b><em>+</em></span></span>';
-        }
-        if(img.classList.contains('claro-video-only')){
-          return '<span class="includes-logo-frame logo-wordmark logo-claro-video" role="img" aria-label="Claro Video"><span class="wordmark-name"><b>Claro</b> Video</span></span>';
-        }
-        return `<span class="includes-logo-frame">${img.outerHTML}</span>`;
-      }).join('');
+      const setMarkup = assets.map(img => `<span class="includes-logo-frame">${img.outerHTML}</span>`).join('');
       /* De uno a tres logos caben con aire; cuatro se desplazan suavemente. */
       if(assets.length <= 3){
         logos.classList.add('is-static');

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 88" role="img" aria-labelledby="title">
+  <title id="title">Universal Plus</title>
+  <g fill="none" stroke="#111820" stroke-width="3">
+    <path d="M42 33a52 34 0 0 1 104 0"/>
+    <path d="M42 55a52 34 0 0 0 94 16"/>
+  </g>
+  <text x="94" y="53" fill="#111820" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" text-anchor="middle" letter-spacing="-1.1">UNIVERSAL</text>
+  <text x="145" y="73" fill="#111820" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="900" text-anchor="middle">+</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 82" role="img" aria-labelledby="title">
+  <title id="title">A través de Claro Video</title>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="90" y="27" fill="#202633" font-size="20" font-weight="600">A través de</text>
+    <text x="90" y="58" font-size="23" font-weight="800">
+      <tspan fill="#e41e2b">Claro</tspan><tspan fill="#111820">-video</tspan>
+    </text>
+    <g fill="#e41e2b">
+      <rect x="81" y="31" width="3" height="8" rx="1.5"/>
+      <rect x="71" y="35" width="7" height="3" rx="1.5" transform="rotate(42 74.5 36.5)"/>
+      <rect x="87" y="35" width="7" height="3" rx="1.5" transform="rotate(-42 90.5 36.5)"/>
+    </g>
+  </g>
+</svg>
