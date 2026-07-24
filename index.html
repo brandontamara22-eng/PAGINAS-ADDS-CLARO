@@ -54,6 +54,14 @@
     ]
   }
   </script>
+  <!-- Google tag (Google Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18347040842"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18347040842');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1710,6 +1718,17 @@
 
     /* ===== LEAD FORM ===== */
     const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwgg8e7JjqBZ6FPK94qK0nUo-37Zdp8Ts0yREDOXSepKDcvbBJK4xxJQLeKgGk5s3Dq/exec';
+    function trackLeadConversion(source){
+      if(typeof gtag !== 'function') return;
+      const transactionId = window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      gtag('event','conversion',{
+        send_to:'AW-18347040842/GrGOCNbK-9UcEMrAxgxE',
+        value:1.0,
+        currency:'PEN',
+        transaction_id:transactionId,
+        event_callback:() => console.info(`Conversión registrada: ${source}`)
+      });
+    }
     document.querySelector('#leadForm').addEventListener('submit', async e => {
       e.preventDefault();
       const form = e.target;
@@ -1732,6 +1751,7 @@
         });
         message.style.color = '#16a05a';
         message.textContent = '¡Listo! Tu solicitud fue registrada.';
+        trackLeadConversion('formulario-principal');
         form.reset();
       }catch(error){
         message.style.color = '#e3262e';
@@ -1765,6 +1785,7 @@
           });
           msg.style.color = '#16a05a';
           msg.textContent = '¡Listo! Te llamaremos pronto.';
+          trackLeadConversion('formulario-hero');
           heroForm.reset();
         }catch(error){
           msg.style.color = '#e3262e';
