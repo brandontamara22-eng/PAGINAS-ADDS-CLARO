@@ -537,6 +537,7 @@
     .timed-lead-close{position:absolute;z-index:8;top:16px;right:16px;width:48px;height:48px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff;font-size:30px;line-height:1;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.28);transition:transform .2s ease,background .2s ease}
     .timed-lead-close:hover{transform:scale(1.08);background:var(--red-dark)}
     .timed-lead-promo{min-width:0;height:100%;background-color:#650707;background-image:url('img/oferta-modal-natural-v2.png');background-position:left center;background-size:auto 100%;background-repeat:no-repeat}
+    .timed-lead-mobile-offer{display:none}
     .timed-lead-modal .hero-lead{box-sizing:border-box;position:relative;inset:auto;transform:none;width:100%;min-width:0;max-width:none;height:100%;margin:0;padding:clamp(42px,5vw,70px) clamp(28px,5vw,72px) 38px;border:0;border-radius:0;background:radial-gradient(circle at 50% 36%,#242424 0,#181818 58%,#121212 100%);color:#fff;box-shadow:none;display:flex;flex-direction:column;justify-content:center}
     .timed-lead-modal .hl-title{max-width:520px;margin-inline:auto;font-family:'Montserrat','Open Sans',sans-serif;font-size:clamp(27px,3.1vw,42px);line-height:1.08;letter-spacing:-.035em;text-align:center;color:#fff}
     .timed-lead-modal .hl-sub{max-width:520px;margin:0 auto 24px;font-size:clamp(14px,1.3vw,17px);line-height:1.45;text-align:center;color:#fff}
@@ -554,10 +555,12 @@
       .timed-lead-dialog{display:block;height:auto;max-height:calc(100dvh - 32px - env(safe-area-inset-bottom));border-radius:22px;overflow-y:auto;background:#171717}
       /* La creatividad contiene campos dibujados: se oculta en móvil para no duplicar el formulario real. */
       .timed-lead-promo{display:none}
-      .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:56px 18px 20px;justify-content:flex-start;border-radius:22px;background:
+      .timed-lead-mobile-offer{display:grid;gap:5px;padding:24px 68px 16px 20px;background:linear-gradient(135deg,#5f0611 0%,#a00b1c 100%);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+      .timed-lead-mobile-offer strong{font-size:clamp(17px,5.1vw,22px);line-height:1.16;letter-spacing:-.02em}
+      .timed-lead-mobile-offer span{font-size:12px;line-height:1.35;color:rgba(255,255,255,.88)}
+      .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:18px 18px 20px;justify-content:flex-start;border-radius:0 0 22px 22px;background:
         radial-gradient(circle at 50% -15%,rgba(228,0,43,.32),transparent 46%),
         linear-gradient(155deg,#211315 0%,#171717 48%,#111 100%)}
-      .timed-lead-modal .hero-lead::before{content:"OFERTA ESPECIAL";align-self:center;margin:0 auto 12px;padding:6px 12px;border:1px solid rgba(255,75,85,.55);border-radius:999px;color:#ff626b;font-size:10px;font-weight:900;letter-spacing:.12em}
       .timed-lead-modal .hl-title{font-size:clamp(22px,7vw,28px);padding-inline:24px;margin-bottom:6px}
       .timed-lead-modal .hl-sub{font-size:13px;line-height:1.35;margin-bottom:12px}
       .timed-lead-modal .hl-form{gap:8px}
@@ -1895,7 +1898,7 @@
       overlay.setAttribute('role','dialog');
       overlay.setAttribute('aria-modal','true');
       overlay.setAttribute('aria-label','Solicita una llamada gratis');
-      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-promo" aria-label="Oferta increíble de Internet"></div></div>`;
+      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-promo" aria-label="Oferta increíble de Internet"></div><div class="timed-lead-mobile-offer"><strong>🔥 ¡400 Mbps por S/49 al mes durante 6 meses!</strong><span>Disfruta más de 30 canales en vivo, Universal+ y Claro video.</span></div></div>`;
       document.body.appendChild(overlay);
       const dialog = overlay.querySelector('.timed-lead-dialog');
       const closeButton = overlay.querySelector('.timed-lead-close');
