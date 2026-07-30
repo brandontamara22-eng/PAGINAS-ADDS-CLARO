@@ -267,19 +267,6 @@
     .foot-links{display:flex;flex-wrap:wrap;gap:14px}
     .foot-links a,.foot-links button{padding:0;border:0;background:none;color:#fff;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 
-    /* TRANSPARENCIA DEL ANUNCIANTE */
-    .transparency{background:#fff;border-top:1px solid var(--line);padding:66px 0}
-    .transparency-card{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.5fr);gap:54px;padding:38px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#fff 0%,#fafbfc 100%);box-shadow:0 14px 38px #1018280b}
-    .transparency-heading .eyebrow{margin-bottom:14px}
-    .transparency-heading h2{margin:0 0 12px;font-size:clamp(28px,3vw,38px);letter-spacing:-.04em}
-    .transparency-heading p{margin:0;color:var(--muted);line-height:1.65}
-    .transparency-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    .transparency-item{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}
-    .transparency-item small{display:block;margin-bottom:6px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-    .transparency-item strong,.transparency-item a{color:var(--ink);font-size:14px;line-height:1.5;font-weight:800}
-    .transparency-disclaimer{grid-column:1/-1;padding:18px 20px;border-left:4px solid var(--red);border-radius:10px;background:#fff4f5;color:#4b2024;font-size:13px;line-height:1.65}
-    .transparency-disclaimer strong{color:#2d1114}
-
     /* WHATSAPP */
     .wa{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#20c76a;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 12px 32px #20c76a40;z-index:5;transition:.2s}
     .wa:hover{transform:scale(1.08)}
@@ -306,10 +293,8 @@
     .container{max-width:var(--w-max);margin:0 auto;padding:0 24px}
 
     /* LAZO DISTRIBUIDOR */
-    .dealer-ribbon{position:relative;background:#E4002B;color:#fff;min-height:42px;display:flex;align-items:center;justify-content:flex-end;padding:9px 30px;font-family:'Open Sans',system-ui,-apple-system,sans-serif;font-size:15px;font-weight:800;letter-spacing:-.01em;z-index:250}
-    .dealer-ribbon-text{display:inline-flex;align-items:center;gap:2px}
-    .dealer-ribbon .spark{margin-left:4px;flex-shrink:0}
-    .dealer-ribbon::after{content:"";position:absolute;left:32px;bottom:-12px;border-top:12px solid #a30019;border-left:12px solid transparent}
+    .dealer-ribbon{position:relative;height:48px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#ef0000;z-index:250}
+    .dealer-ribbon-img{display:block;width:auto;height:66px;max-width:none;object-fit:contain}
 
     /* SKIP LINK */
     .skip-link{position:absolute;top:4px;left:-9999px;z-index:9999;background:#E4002B;color:#fff;padding:10px 20px;border-radius:6px;font-weight:700;font-size:14px}
@@ -378,8 +363,9 @@
     .hero-glow{position:absolute;top:-80px;right:-80px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(255,100,100,.2) 0%,transparent 65%);filter:blur(40px);z-index:1;pointer-events:none}
     .hero-inner{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:40px;align-items:center;height:100%;min-height:0;padding-top:24px;padding-bottom:24px;position:relative;z-index:2}
     .hero-content{max-width:410px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
-    .logo{display:flex;align-items:center;gap:9px}
+    .logo{display:flex;align-items:center;gap:11px}
     .logo-mark{display:grid;place-items:center;flex-shrink:0}
+    .authorized-seal{display:block;width:46px;height:46px;object-fit:contain}
     .logo-text{display:flex;flex-direction:column;font-size:16px;font-weight:900;color:var(--dark);line-height:1.05;letter-spacing:-.02em}
     .logo-text strong{color:var(--red);font-weight:900}
     .logo-text small{margin-top:4px;color:#666;font-size:9px;font-weight:700;letter-spacing:.01em}
@@ -459,10 +445,13 @@
     }
     @media(max-width:560px){
       /* Hero móvil compacto: una sola secuencia visual, sin franjas vacías. */
-      .dealer-ribbon,.top-bar{display:none}
+      .top-bar{display:none}
+      .dealer-ribbon{height:42px}
+      .dealer-ribbon-img{height:58px}
       .site-header{top:0}
       .header-inner{height:64px;padding-left:18px;padding-right:12px}
       .logo{min-width:0}
+      .authorized-seal{width:42px;height:42px}
       .logo-text{font-size:14px;white-space:nowrap}
       .logo-text small{font-size:8px}
       .hero{display:flex;flex-direction:column;height:auto;min-height:0;padding:0 0 24px;background:linear-gradient(180deg,#5f0012 0%,#760018 100%)}
@@ -603,9 +592,6 @@
       .timed-lead-modal .hl-form{gap:8px}
     }
     @media(max-width:760px){
-      .transparency{padding:48px 0}
-      .transparency-card{grid-template-columns:1fr;gap:26px;padding:24px}
-      .transparency-details{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;gap:28px}
       .foot-actions{align-items:flex-start}
       .foot-legal{flex-direction:column;gap:12px}
@@ -624,10 +610,8 @@
   <a href="#planes" class="skip-link">Saltar al contenido principal</a>
 
   <!-- ===== LAZO DISTRIBUIDOR ===== -->
-  <div class="dealer-ribbon">
-    <span class="dealer-ribbon-text">Planes Hogar Online · Asesoría comercial independiente
-      <svg class="spark" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.5 4.5 3 7 7.5 7.5C15 10 12.5 12.5 12 17c-.5-4.5-3-7-7.5-7.5C9 9 11.5 6.5 12 2z"/></svg>
-    </span>
+  <div class="dealer-ribbon" aria-label="Distribuidor Autorizado Claro">
+    <img class="dealer-ribbon-img" src="img/cintillo-distribuidor-autorizado.png" alt="Distribuidor Autorizado Claro">
   </div>
 
   <!-- ===== TOP BAR ===== -->
@@ -653,17 +637,16 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
 
-      <a href="#" class="logo" aria-label="Planes Hogar Online — Inicio">
-        <span class="logo-mark" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="2.2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <a href="#" class="logo" aria-label="Distribuidor Autorizado — Inicio">
+        <span class="logo-mark">
+          <img class="authorized-seal" src="img/distribuidor-autorizado-sello.png" alt="Sello de Distribuidor Autorizado">
         </span>
-        <span class="logo-text">Planes Hogar <strong>Online</strong><small>Operado por NETCONTACT S.A.C.</small></span>
+        <span class="logo-text">Distribuidor <strong>Autorizado</strong><small>Planes Claro Hogar</small></span>
       </a>
 
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#planes" class="nav-item">Planes</a>
         <a href="#beneficios" class="nav-item">Beneficios</a>
-        <a href="#quienes-somos" class="nav-item">Quiénes somos</a>
         <a href="#contacto" class="nav-item">Contratar</a>
       </nav>
 
@@ -681,11 +664,11 @@
   <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Menú móvil" aria-hidden="true">
     <div class="mm-header">
-      <a href="#" class="logo" aria-label="Planes Hogar Online">
-        <span class="logo-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E4002B" stroke-width="2.2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <a href="#" class="logo" aria-label="Distribuidor Autorizado">
+        <span class="logo-mark">
+          <img class="authorized-seal" src="img/distribuidor-autorizado-sello.png" alt="Sello de Distribuidor Autorizado">
         </span>
-        <span class="logo-text">Planes Hogar <strong>Online</strong><small>Operado por NETCONTACT S.A.C.</small></span>
+        <span class="logo-text">Distribuidor <strong>Autorizado</strong><small>Planes Claro Hogar</small></span>
       </a>
       <button class="mm-close" id="mobile-close" aria-label="Cerrar menú">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -694,7 +677,6 @@
     <ul class="mm-nav">
       <li><a href="#planes" class="mm-nav-item">Planes</a></li>
       <li><a href="#beneficios" class="mm-nav-item">Beneficios</a></li>
-      <li><a href="#quienes-somos" class="mm-nav-item">Quiénes somos</a></li>
       <li><a href="#contacto" class="mm-nav-item">Contratar</a></li>
     </ul>
     <div class="mm-footer">
@@ -712,7 +694,7 @@
       </div>
       <div class="container hero-inner">
         <div class="hero-content">
-          <span class="hero-badge">Asesoría comercial independiente</span>
+          <span class="hero-badge">Distribuidor autorizado</span>
           <h1>Conecta tu hogar<br>con <em>Fibra Óptica</em></h1>
           <p class="hero-desc">Hasta <strong>1000 Mbps</strong> de velocidad real, estabilidad garantizada y la mejor señal para toda tu familia.</p>
           <div class="hero-pills" aria-label="Ventajas">
@@ -1462,44 +1444,6 @@
       </div>
     </section>
 
-    <!-- TRANSPARENCIA DEL ANUNCIANTE -->
-    <section class="transparency" id="quienes-somos" aria-labelledby="transparency-title">
-      <div class="wrap">
-        <div class="transparency-card">
-          <div class="transparency-heading">
-            <span class="eyebrow">Información del anunciante</span>
-            <h2 id="transparency-title">Quiénes somos</h2>
-            <p>Planes Hogar Online es un canal de asesoría comercial para comparar opciones, consultar cobertura y gestionar solicitudes de servicios para el hogar.</p>
-          </div>
-          <div class="transparency-details">
-            <div class="transparency-item">
-              <small>Empresa responsable</small>
-              <strong>NETCONTACT S.A.C.</strong>
-            </div>
-            <div class="transparency-item">
-              <small>RUC</small>
-              <strong>20613732242</strong>
-            </div>
-            <div class="transparency-item">
-              <small>Contacto comercial</small>
-              <a href="tel:+51991726326">+51 991 726 326</a>
-            </div>
-            <div class="transparency-item">
-              <small>Correo electrónico</small>
-              <a href="mailto:gerenciacomercial@netcontactbpo.com">gerenciacomercial@netcontactbpo.com</a>
-            </div>
-            <div class="transparency-item" style="grid-column:1/-1">
-              <small>Dirección registrada</small>
-              <strong>Av. Santiago Antúnez de Mayolo 1348, Urb. Los Pinares, Los Olivos, Lima</strong>
-            </div>
-          </div>
-          <div class="transparency-disclaimer">
-            <strong>Aviso de relación comercial:</strong> Planes Hogar Online es operado por NETCONTACT S.A.C. y brinda asesoría comercial independiente para solicitar servicios Claro Hogar. No somos el sitio web oficial de América Móvil Perú S.A.C. (Claro). Los planes, precios, beneficios e instalación están sujetos a cobertura, evaluación y condiciones vigentes del operador.
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- PREGUNTAS -->
     <section id="preguntas">
       <div class="wrap">
@@ -1520,8 +1464,8 @@
   <footer>
     <div class="wrap foot">
       <div class="foot-company">
-        <h2>Planes Hogar <span>online</span></h2>
-        <p>Marca comercial operada por <strong>NETCONTACT S.A.C.</strong>, RUC 20613732242. Brindamos asesoría independiente para comparar opciones de Internet, televisión y telefonía y gestionar solicitudes sujetas a cobertura y evaluación del operador.</p>
+        <h2>Distribuidor <span>autorizado</span></h2>
+        <p>Atención y asesoría para solicitar planes Claro Hogar de Internet, televisión y telefonía en el Perú, sujetos a cobertura, evaluación y condiciones vigentes.</p>
       </div>
       <div class="foot-meta">
         <strong>Atención comercial</strong>
@@ -1533,13 +1477,12 @@
         <button id="btnPolitica" class="link-politica">Política de privacidad</button>
       </div>
       <div class="foot-legal">
-        <span>© 2026 Planes Hogar Online · Operado por <strong>NETCONTACT S.A.C.</strong></span>
+        <span>© 2026 · Operado por <strong>NETCONTACT S.A.C.</strong> · RUC 20613732242</span>
         <div class="foot-links">
-          <a href="#quienes-somos">Quiénes somos</a>
           <button id="btnPoliticaFooter" class="link-politica">Política de privacidad</button>
           <a href="#preguntas">Condiciones del servicio</a>
         </div>
-        <span>Sitio de asesoría comercial independiente. No somos el sitio web oficial de América Móvil Perú S.A.C. (Claro).</span>
+        <span>Los planes y beneficios están sujetos a disponibilidad y validación del operador.</span>
       </div>
     </div>
   </footer>
