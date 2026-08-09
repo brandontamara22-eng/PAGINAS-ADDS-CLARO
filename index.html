@@ -17,11 +17,11 @@
   <meta property="og:title" content="PlanesHogar.com.pe | Planes de Internet para el hogar">
   <meta property="og:description" content="Asesoría comercial independiente para consultar cobertura y solicitar planes Claro Hogar de Internet, TV y telefonía.">
   <meta property="og:url" content="https://planeshogar.com.pe/">
-  <meta property="og:image" content="https://planeshogar.com.pe/img/hero-panorama-clean.png">
+  <meta property="og:image" content="https://planeshogar.com.pe/img/banner-fibra-liga1-wide-v4.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Planes Hogar Online">
   <meta name="twitter:description" content="Asesoría comercial independiente para solicitar planes de Internet, TV y telefonía para el hogar.">
-  <meta name="twitter:image" content="https://planeshogar.com.pe/img/hero-panorama-clean.png">
+  <meta name="twitter:image" content="https://planeshogar.com.pe/img/banner-fibra-liga1-wide-v4.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -270,11 +270,10 @@
     /* WHATSAPP */
     .wa{position:fixed;right:22px;bottom:22px;width:66px;height:66px;border-radius:50%;background:#20c76a;color:#fff;display:grid;place-items:center;font-size:28px;box-shadow:0 14px 36px #20c76a52;z-index:5;transition:transform .2s ease,box-shadow .2s ease;animation:wa-float 2.8s ease-in-out infinite;isolation:isolate}
     .wa:hover{transform:scale(1.08);box-shadow:0 18px 42px #20c76a66}
-    .wa::before{content:"Solicita información aquí";position:absolute;right:76px;top:50%;width:max-content;max-width:190px;padding:9px 13px;border-radius:999px;background:#fff;color:#183329;font-size:12px;font-weight:800;line-height:1.2;box-shadow:0 8px 24px rgba(16,24,40,.18);pointer-events:none;opacity:0;transform:translate(8px,-50%) scale(.96);animation:wa-invite 9s ease-in-out 2.5s infinite both}
-    .wa::after{content:"";position:absolute;right:63px;top:50%;border:7px solid transparent;border-left-color:#fff;pointer-events:none;opacity:0;transform:translate(4px,-50%);animation:wa-invite-arrow 9s ease-in-out 2.5s infinite both}
+    .wa::before{content:"Solicita información aquí";position:absolute;right:0;bottom:calc(100% + 14px);width:max-content;max-width:190px;padding:10px 15px;border:1px solid rgba(16,24,40,.1);border-radius:18px;background:#fff;color:#183329;font-size:12px;font-weight:800;line-height:1.2;box-shadow:0 8px 24px rgba(16,24,40,.18);pointer-events:none;opacity:1;transform:none;animation:wa-message-float 2.8s ease-in-out infinite}
+    .wa::after{content:"";position:absolute;right:23px;bottom:calc(100% + 7px);width:17px;height:17px;border-right:1px solid rgba(16,24,40,.1);border-bottom:1px solid rgba(16,24,40,.1);border-radius:0 0 4px 0;background:#fff;pointer-events:none;opacity:1;transform:rotate(45deg);animation:wa-message-float 2.8s ease-in-out infinite}
     @keyframes wa-float{0%,100%{translate:0 0}50%{translate:0 -7px}}
-    @keyframes wa-invite{0%,12%,78%,100%{opacity:0;transform:translate(8px,-50%) scale(.96)}20%,68%{opacity:1;transform:translate(0,-50%) scale(1)}}
-    @keyframes wa-invite-arrow{0%,12%,78%,100%{opacity:0;transform:translate(4px,-50%)}20%,68%{opacity:1;transform:translate(0,-50%)}}
+    @keyframes wa-message-float{0%,100%{translate:0 0}50%{translate:0 -3px}}
 
     /* =========================================================
        IMPORTED — HEADER + HERO + STATS (diseño de la imagen 1)
@@ -294,8 +293,8 @@
     .container{max-width:var(--w-max);margin:0 auto;padding:0 24px}
 
     /* LAZO DISTRIBUIDOR */
-    .dealer-ribbon{position:relative;width:100%;height:72px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f40000;box-shadow:0 2px 10px rgba(126,0,0,.16);z-index:250}
-    .dealer-ribbon-img{display:block;width:min(720px,calc(100vw - 36px));height:auto;max-width:none;object-fit:contain;object-position:center;filter:drop-shadow(0 0 8px rgba(255,255,255,.15))}
+    .dealer-ribbon{position:relative;width:100%;height:28px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f40000;box-shadow:0 2px 8px rgba(126,0,0,.14);z-index:250}
+    .dealer-ribbon-img{display:block;width:min(290px,calc(100vw - 24px));height:auto;max-width:none;object-fit:contain;object-position:center;filter:drop-shadow(0 0 4px rgba(255,255,255,.1))}
 
     /* SKIP LINK */
     .skip-link{position:absolute;top:4px;left:-9999px;z-index:9999;background:#E4002B;color:#fff;padding:10px 20px;border-radius:6px;font-weight:700;font-size:14px}
@@ -358,12 +357,12 @@
     .btn-mm-cta:hover{background:var(--red-dark)}
 
     /* HERO */
-    .hero{position:relative;height:clamp(500px,27vw,1550px);min-height:0;background:#680013;overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,0,6,.9) 0%,rgba(58,0,11,.68) 22%,rgba(68,0,12,.3) 42%,rgba(68,0,12,.08) 62%,rgba(68,0,12,.12) 100%),radial-gradient(circle,rgba(255,255,255,.035) 1px,transparent 1px);background-size:100% 100%,28px 28px;z-index:1;pointer-events:none}
-    .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(24,0,7,.26) 0%,rgba(35,2,11,.14) 20%,transparent 38%,transparent 72%,rgba(183,99,105,.08) 86%,rgba(177,94,100,.18) 100%)}
-    .hero-glow{position:absolute;top:-80px;right:-80px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(255,100,100,.2) 0%,transparent 65%);filter:blur(40px);z-index:1;pointer-events:none}
-    .hero-inner{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:40px;align-items:center;height:100%;min-height:0;padding-top:24px;padding-bottom:24px;position:relative;z-index:2}
-    .hero-content{max-width:410px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
+    .hero{position:relative;height:clamp(560px,32vw,650px);min-height:0;background:#680013;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(52,0,7,.12) 0%,transparent 10%,transparent 90%,rgba(58,0,7,.12) 100%);z-index:1;pointer-events:none}
+    .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 86%,rgba(38,0,5,.14) 100%)}
+    .hero-glow{display:none}
+    .hero-inner{display:grid;grid-template-columns:minmax(320px,520px) 1fr;gap:40px;align-items:end;height:100%;min-height:0;padding-top:24px;padding-bottom:6px;position:relative;z-index:2;pointer-events:none}
+    .hero-content{max-width:520px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
     .logo{display:flex;align-items:center;gap:11px}
     .logo-mark{display:grid;place-items:center;flex-shrink:0}
     .authorized-seal{display:block;width:46px;height:46px;object-fit:contain}
@@ -377,15 +376,15 @@
     .hero-desc strong{color:var(--white);font-weight:700}
     .hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
     .pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.11);color:rgba(255,255,255,.92);font-size:13px;font-weight:600;padding:6px 14px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.2)}
-    .hero-actions{display:flex;flex-wrap:wrap;column-gap:12px;row-gap:6px}
-    /* Imagen full-bleed a la derecha; se funde con el fondo rojo real vía máscara */
-    .hero-media{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#6f2932}
-    .hero-media::before{content:"";position:absolute;inset:-24px;background:url('img/hero-panorama-clean.png') center/cover no-repeat;filter:blur(20px) saturate(.9);opacity:.9;transform:scale(1.025)}
-    .hero-media::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(58,8,18,.42) 0%,rgba(58,8,18,.12) 14%,transparent 30%,transparent 70%,rgba(125,55,64,.08) 86%,rgba(125,55,64,.28) 100%)}
-    .hero-img{position:absolute;z-index:1;top:0;left:50%;width:auto;max-width:none;height:100%;display:block;transform:translateX(-50%);object-fit:fill;opacity:1;filter:saturate(.98) contrast(.99);
-      -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 3%,rgba(0,0,0,.82) 7%,#000 13%,#000 87%,rgba(0,0,0,.82) 93%,rgba(0,0,0,.35) 97%,transparent 100%);
-      -webkit-mask-composite:source-in;-webkit-mask-repeat:no-repeat;-webkit-mask-size:100% 100%;
-      mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 3%,rgba(0,0,0,.82) 7%,#000 13%,#000 87%,rgba(0,0,0,.82) 93%,rgba(0,0,0,.35) 97%,transparent 100%);mask-repeat:no-repeat;mask-size:100% 100%}
+    .hero-badge,.hero-content h1,.hero-desc,.hero-pills{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    .hero-actions{position:absolute;left:0;bottom:-80px;display:inline-flex;flex-wrap:wrap;column-gap:10px;row-gap:8px;padding:0;border:0;border-radius:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;pointer-events:auto}
+    .hero-actions .btn--lg{padding:13px 24px;font-size:14px}
+    /* La creatividad principal permanece nítida; solo sus últimos 12% laterales se funden con el fondo. */
+    .hero-media{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#75000d}
+    .hero-media picture{display:block;width:100%;height:100%}
+    .hero-media::before{display:none}
+    .hero-media::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(65,0,10,.16) 0%,transparent 8%,transparent 90%,rgba(65,0,10,.14) 100%)}
+    .hero-img{position:absolute;z-index:1;inset:0;width:100%;max-width:none;height:100%;display:block;transform:none;object-fit:cover;object-position:center center;opacity:1;filter:none}
 
     /* Formulario flotante sobre el banner (proporcional) */
     .hero-lead{position:absolute;top:50%;right:max(24px,calc((100vw - 1280px)/2));transform:translateY(-50%);z-index:5;width:292px;max-width:calc(100% - 48px);background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.78);border-radius:20px;padding:18px 18px 19px;box-shadow:0 22px 52px rgba(0,0,0,.3)}
@@ -423,17 +422,13 @@
       .btn-header-cta{display:none}
       .hero{min-height:auto}
       .hero{height:auto}
-      .hero-inner{grid-template-columns:1fr;text-align:center;gap:32px;min-height:auto;padding-top:36px;padding-bottom:38px}
+      .hero-inner{grid-template-columns:1fr;text-align:center;gap:0;min-height:auto;padding:14px 24px 16px}
       .hero-pills{justify-content:center}
-      .hero-actions{justify-content:center}
+      .hero-actions{position:static;justify-content:center}
       .hero-media{position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;height:auto;margin:0 auto;max-width:none}
       .hero-media::before,.hero-media::after{display:none}
-      .hero-img{position:relative;top:auto;left:auto;width:100%;max-width:100%;height:auto;display:block;transform:none;aspect-ratio:16/9;object-fit:cover;object-position:center;
-        -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);
-        -webkit-mask-composite:source-over;
-        mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);
-        mask-composite:add}
-      .hero-content{max-width:none}
+      .hero-img{position:relative;top:auto;left:auto;width:100%;max-width:100%;height:auto;display:block;transform:none;aspect-ratio:2200/780;object-fit:cover;object-position:center}
+      .hero-content{width:100%;max-width:none}
       .hero-lead{position:static;top:auto;right:auto;transform:none;width:min(420px,calc(100% - 32px));max-width:420px;margin:0 auto 36px}
       .hero-content{order:1}
       .hero-lead{width:100%;max-width:420px;margin:0 auto}
@@ -447,8 +442,8 @@
     @media(max-width:560px){
       /* Hero móvil compacto: una sola secuencia visual, sin franjas vacías. */
       .top-bar{display:none}
-      .dealer-ribbon{height:54px}
-      .dealer-ribbon-img{width:min(480px,calc(100vw - 20px));height:auto}
+      .dealer-ribbon{height:26px}
+      .dealer-ribbon-img{width:min(270px,calc(100vw - 16px));height:auto}
       .site-header{top:0}
       .header-inner{height:64px;padding-left:18px;padding-right:12px}
       .logo{min-width:0}
@@ -458,20 +453,15 @@
       .hero{display:flex;flex-direction:column;height:auto;min-height:0;padding:0 0 24px;background:linear-gradient(180deg,#5f0012 0%,#760018 100%)}
       .hero::before{background:linear-gradient(180deg,transparent 0 180px,rgba(38,0,8,.18) 280px,rgba(38,0,8,.42) 100%);background-size:100% 100%}
       .hero::after,.hero-glow{display:none}
-      .hero-media{order:1;position:relative;width:100%;height:clamp(210px,56vw,250px);min-height:210px;margin:0;overflow:hidden;background:#6f2932}
-      .hero-media::before{display:block;inset:-14px;background:url('img/hero-panorama-clean.png') center/cover no-repeat;filter:blur(14px) saturate(.92);opacity:.78;transform:scale(1.04)}
-      .hero-media::after{display:block;background:linear-gradient(180deg,rgba(89,0,17,.08) 0%,transparent 68%,rgba(103,0,20,.58) 100%)}
-      .hero-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;object-fit:cover;object-position:center 48%;transform:none;
+      .hero-media{order:1;position:relative;width:100%;height:min(100vw,440px);min-height:0;margin:0;overflow:hidden;background:#6f0012}
+      .hero-media::before{display:none}
+      .hero-media::after{display:block;background:linear-gradient(180deg,rgba(89,0,10,.04) 0%,transparent 70%,rgba(103,0,20,.62) 100%)}
+      .hero-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;object-fit:cover;object-position:center center;transform:none;
         -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 83%,transparent 100%);
         mask-image:linear-gradient(180deg,#000 0%,#000 83%,transparent 100%)}
-      .hero-inner{order:2;display:block;width:100%;padding:4px 20px 20px}
+      .hero-inner{order:2;display:block;width:100%;padding:12px 20px 14px}
       .hero-content{max-width:440px;margin:0 auto;text-align:center}
-      .hero-badge{font-size:9px;letter-spacing:1px;margin:0 0 12px;padding:6px 12px}
-      .hero-content h1{font-size:clamp(28px,8vw,34px);line-height:1.04;margin-bottom:12px}
-      .hero-desc{font-size:15px;line-height:1.45;margin:0 auto 14px;max-width:390px}
-      .hero-pills{gap:7px;justify-content:center;margin-bottom:16px}
-      .pill{font-size:12px;padding:6px 11px}
-      .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+      .hero-actions{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;padding:0;border:0;border-radius:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
       .hero-actions .btn{width:100%;min-height:48px;padding:12px 10px;font-size:13px;text-align:center;justify-content:center;white-space:normal}
       .hero-lead{order:3;position:relative;inset:auto;transform:none;box-sizing:border-box;width:calc(100% - 32px);max-width:440px;margin:0 auto;padding:20px 18px;border-radius:20px;background:rgba(255,255,255,.97);box-shadow:0 16px 38px rgba(25,0,6,.26)}
       .hl-title{font-size:22px}
@@ -581,8 +571,8 @@
       .timed-lead-modal .hl-btn{min-height:48px;padding:12px}
       .timed-lead-close{top:9px;right:9px;width:44px;height:44px;font-size:27px}
       .wa{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:62px;height:62px}
-      .wa::before{right:71px;max-width:175px;font-size:11px;padding:8px 11px}
-      .wa::after{right:58px}
+      .wa::before{right:0;bottom:calc(100% + 13px);max-width:175px;font-size:11px;padding:9px 12px}
+      .wa::after{right:21px;bottom:calc(100% + 6px)}
     }
     @media(max-height:620px) and (min-width:641px){
       .timed-lead-modal{padding:20px}
@@ -603,7 +593,7 @@
       html{scroll-behavior:auto}
       .includes-track{transform:none!important}
       .wa{animation:none}
-      .wa::before,.wa::after{display:none}
+      .wa::before,.wa::after{animation:none}
     }
   </style>
 </head>
@@ -692,27 +682,13 @@
     <section class="hero" aria-label="Banner principal Claro Hogar">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-media" aria-hidden="true">
-        <img src="img/hero-panorama-clean.png" alt="" class="hero-img" loading="eager">
+        <picture>
+          <source media="(max-width: 767px)" srcset="img/banner-fibra-liga1-mobile.png">
+          <img src="img/banner-fibra-liga1-wide-v4.png" alt="" class="hero-img" loading="eager" fetchpriority="high">
+        </picture>
       </div>
       <div class="container hero-inner">
         <div class="hero-content">
-          <span class="hero-badge">Distribuidor autorizado</span>
-          <h1>Conecta tu hogar<br>con <em>Fibra Óptica</em></h1>
-          <p class="hero-desc">Hasta <strong>1000 Mbps</strong> de velocidad real, estabilidad garantizada y la mejor señal para toda tu familia.</p>
-          <div class="hero-pills" aria-label="Ventajas">
-            <span class="pill">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Instalación gratis
-            </span>
-            <span class="pill">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Sin cortes
-            </span>
-            <span class="pill">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              WiFi incluido
-            </span>
-          </div>
           <div class="hero-actions">
             <a href="#planes" class="btn btn--white-solid btn--lg">Ver planes disponibles</a>
             <a href="#beneficios" class="btn btn--outline-white btn--lg">Conocer más</a>
