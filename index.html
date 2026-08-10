@@ -691,7 +691,7 @@
         <div class="hero-content">
           <div class="hero-actions">
             <a href="https://wa.me/51991726326?text=Hola%2C%20quiero%20ver%20los%20planes%20de%20internet%20disponibles%20para%20mi%20zona." target="_blank" rel="noopener" class="btn btn--white-solid btn--lg">Ver planes disponibles</a>
-            <a href="#beneficios" class="btn btn--outline-white btn--lg">Conocer más</a>
+            <a href="https://wa.me/51991726326?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20los%20planes%20de%20internet%20hogar." target="_blank" rel="noopener" class="btn btn--outline-white btn--lg">Conocer más</a>
           </div>
         </div>
       </div>
@@ -700,11 +700,11 @@
         <h3 class="hl-title">¡Te llamamos gratis!</h3>
         <p class="hl-sub">¡Déjanos tu número y te contamos todas las ofertas que tenemos para ti!</p>
         <form id="heroLeadForm" class="hl-form">
-          <input id="heroPhone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{9}" maxlength="9" placeholder="N° de Celular" aria-label="Número de celular" autocomplete="tel" required>
+          <input id="heroPhone" name="phone" type="tel" inputmode="numeric" maxlength="9" placeholder="N° de Celular" aria-label="Número de celular" autocomplete="tel">
           <input id="heroDistrict" name="district" type="text" placeholder="Distrito (opcional)" aria-label="Distrito opcional" autocomplete="address-level2">
           <p class="hl-note">*Ingresa tu número sin anteponer el (51)</p>
           <label class="hl-check">
-            <input type="checkbox" required>
+            <input type="checkbox">
             <span>Declaro haber leído la <button type="button" class="hl-link" id="linkPoliticaHero">Política de Privacidad y los Términos y Condiciones</button>.</span>
           </label>
           <input type="hidden" name="plan" value="Solicitud desde el banner principal">
@@ -1472,9 +1472,9 @@
         </div>
         <form class="form" id="leadForm">
           <div class="field"><label for="name">Nombre y apellido <span style="color:var(--muted);font-weight:600">(opcional)</span></label><input id="name" name="name" autocomplete="name" placeholder="¿Cómo te llamas?"></div>
-          <div class="field"><label for="phone">Número de celular</label><input id="phone" name="phone" inputmode="numeric" pattern="[0-9]{9}" maxlength="9" placeholder="999 999 999" required></div>
+          <div class="field"><label for="phone">Número de celular <span style="color:var(--muted);font-weight:600">(opcional)</span></label><input id="phone" name="phone" inputmode="numeric" maxlength="9" placeholder="999 999 999"></div>
           <div class="field"><label for="district">Distrito <span style="color:var(--muted);font-weight:600">(opcional)</span></label><input id="district" name="district" placeholder="Ej. Miraflores"></div>
-          <label class="check"><input type="checkbox" required> Acepto el tratamiento de mis datos para recibir información comercial según la política de privacidad.</label>
+          <label class="check"><input type="checkbox"> Acepto el tratamiento de mis datos para recibir información comercial según la política de privacidad.</label>
           <input type="hidden" id="selectedPlan" name="plan">
           <button class="btn" type="submit">Solicitar llamada</button>
           <div class="message" id="message"></div>
@@ -1841,6 +1841,17 @@
       window.open(waLink(msg), '_blank', 'noopener');
     }));
 
+    /* ===== TARJETAS DE BENEFICIOS -> WhatsApp ===== */
+    document.querySelectorAll('#beneficios .benefit').forEach(card => {
+      const titulo = card.querySelector('h3')?.textContent?.trim() || 'los beneficios';
+      card.style.cursor = 'pointer';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      const abrir = () => window.open(waLink(`¡Hola! Quiero más información sobre ${titulo} y los planes de internet hogar.`), '_blank', 'noopener');
+      card.addEventListener('click', abrir);
+      card.addEventListener('keydown', ev => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); abrir(); } });
+    });
+
     /* ===== FAQ ===== */
     document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () =>
       q.parentElement.classList.toggle('open')
@@ -1888,37 +1899,41 @@
       const p = document.querySelector('#phone');
       const message = document.querySelector('#message');
       const button = form.querySelector('button[type="submit"]');
-      if(!/^9\d{8}$/.test(p.value.replace(/\s/g,''))){
-        message.textContent = 'Ingresa un celular peruano válido de 9 dígitos.';
-        message.style.color = '#e3262e';
-        return;
-      }
-      const waMsg = [
+      const phone = p.value.replace(/\s/g,'');
+      const name = document.querySelector('#name').value.trim();
+      const district = document.querySelector('#district').value.trim();
+      const plan = document.querySelector('#selectedPlan').value;
+      const tieneDatos = phone !== '' || name !== '' || district !== '';
+      const waMsg = tieneDatos ? [
         '¡Hola! Quiero solicitar una llamada para contratar internet hogar.',
-        (document.querySelector('#name').value.trim() ? 'Nombre: ' + document.querySelector('#name').value.trim() : ''),
-        'Celular: ' + p.value.replace(/\s/g,''),
-        (document.querySelector('#district').value.trim() ? 'Distrito: ' + document.querySelector('#district').value.trim() : ''),
-        (document.querySelector('#selectedPlan').value ? 'Plan de interés: ' + document.querySelector('#selectedPlan').value : '')
-      ].filter(Boolean).join('\n');
+        (name ? 'Nombre: ' + name : ''),
+        (phone ? 'Celular: ' + phone : ''),
+        (district ? 'Distrito: ' + district : ''),
+        (plan ? 'Plan de interés: ' + plan : '')
+      ].filter(Boolean).join('\n')
+      : '¡Hola! Quiero información sobre los planes de internet hogar.';
       window.open(waLink(waMsg), '_blank', 'noopener');
-      const data = new URLSearchParams(new FormData(form));
-      data.set('phone', p.value.replace(/\s/g,''));
-      button.disabled = true; button.textContent = 'Enviando...'; message.textContent = '';
-      try{
-        await fetch(SHEETS_ENDPOINT, {
-          method:'POST', mode:'no-cors',
-          headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
-          body:data.toString()
-        });
-        message.style.color = '#16a05a';
-        message.textContent = '¡Listo! Tu solicitud fue registrada.';
-        trackLeadConversion('formulario-principal');
-        form.reset();
-      }catch(error){
-        message.style.color = '#e3262e';
-        message.textContent = 'No pudimos enviar tus datos. Inténtalo nuevamente.';
-      }finally{
-        button.disabled = false; button.textContent = 'Solicitar llamada';
+      // Guarda en el Drive (Google Sheet) solo si dejó un celular válido de 9 dígitos.
+      if(/^9\d{8}$/.test(phone)){
+        const data = new URLSearchParams(new FormData(form));
+        data.set('phone', phone);
+        button.disabled = true; button.textContent = 'Enviando...'; message.textContent = '';
+        try{
+          await fetch(SHEETS_ENDPOINT, {
+            method:'POST', mode:'no-cors',
+            headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
+            body:data.toString()
+          });
+          message.style.color = '#16a05a';
+          message.textContent = '¡Listo! Tu solicitud fue registrada. Te atendemos por WhatsApp.';
+          trackLeadConversion('formulario-principal');
+          form.reset();
+        }catch(error){
+          message.style.color = '#16a05a';
+          message.textContent = 'Te llevamos a WhatsApp para completar tu solicitud.';
+        }finally{
+          button.disabled = false; button.textContent = 'Solicitar llamada';
+        }
       }
     });
 
@@ -1930,35 +1945,37 @@
         const p = document.getElementById('heroPhone');
         const msg = document.getElementById('heroMsg');
         const button = heroForm.querySelector('button[type="submit"]');
-        if(!/^9\d{8}$/.test(p.value.replace(/\s/g,''))){
-          msg.style.color = '#e3262e';
-          msg.textContent = 'Ingresa un celular válido de 9 dígitos.';
-          return;
-        }
-        const waMsg = [
+        const phone = p.value.replace(/\s/g,'');
+        const district = document.getElementById('heroDistrict').value.trim();
+        const tieneDatos = phone !== '' || district !== '';
+        const waMsg = tieneDatos ? [
           '¡Hola! Quiero que me llamen gratis con la información de los planes de internet hogar.',
-          'Celular: ' + p.value.replace(/\s/g,''),
-          (document.getElementById('heroDistrict').value.trim() ? 'Distrito: ' + document.getElementById('heroDistrict').value.trim() : '')
-        ].filter(Boolean).join('\n');
+          (phone ? 'Celular: ' + phone : ''),
+          (district ? 'Distrito: ' + district : '')
+        ].filter(Boolean).join('\n')
+        : '¡Hola! Quiero información sobre los planes de internet hogar.';
         window.open(waLink(waMsg), '_blank', 'noopener');
-        const data = new URLSearchParams(new FormData(heroForm));
-        data.set('phone', p.value.replace(/\s/g,''));
-        button.disabled = true; button.textContent = 'Enviando...'; msg.textContent = '';
-        try{
-          await fetch(SHEETS_ENDPOINT, {
-            method:'POST', mode:'no-cors',
-            headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
-            body:data.toString()
-          });
-          msg.style.color = '#16a05a';
-          msg.textContent = '¡Listo! Te llamaremos pronto.';
-          trackLeadConversion('formulario-hero');
-          heroForm.reset();
-        }catch(error){
-          msg.style.color = '#e3262e';
-          msg.textContent = 'No pudimos enviar tus datos. Intenta de nuevo.';
-        }finally{
-          button.disabled = false; button.textContent = 'Solicitar llamada';
+        // Guarda en el Drive (Google Sheet) solo si dejó un celular válido de 9 dígitos.
+        if(/^9\d{8}$/.test(phone)){
+          const data = new URLSearchParams(new FormData(heroForm));
+          data.set('phone', phone);
+          button.disabled = true; button.textContent = 'Enviando...'; msg.textContent = '';
+          try{
+            await fetch(SHEETS_ENDPOINT, {
+              method:'POST', mode:'no-cors',
+              headers:{ 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
+              body:data.toString()
+            });
+            msg.style.color = '#16a05a';
+            msg.textContent = '¡Listo! Te llamaremos pronto. Te atendemos por WhatsApp.';
+            trackLeadConversion('formulario-hero');
+            heroForm.reset();
+          }catch(error){
+            msg.style.color = '#16a05a';
+            msg.textContent = 'Te llevamos a WhatsApp para completar tu solicitud.';
+          }finally{
+            button.disabled = false; button.textContent = 'Solicitar llamada';
+          }
         }
       });
     }
