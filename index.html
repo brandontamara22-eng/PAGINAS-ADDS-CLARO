@@ -598,6 +598,11 @@
   </style>
 </head>
 <body>
+  <script>
+    /* La página siempre inicia arriba (evita saltar a una sección si quedó un #hash en la URL). */
+    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if(location.hash){ history.replaceState(null, '', location.pathname + location.search); window.scrollTo(0, 0); }
+  </script>
 
   <a href="#planes" class="skip-link">Saltar al contenido principal</a>
 
@@ -638,8 +643,6 @@
 
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#planes" class="nav-item">Planes</a>
-        <a href="#beneficios" class="nav-item">Beneficios</a>
-        <a href="#contacto" class="nav-item">Contratar</a>
       </nav>
 
       <div class="header-ctas">
@@ -668,8 +671,6 @@
     </div>
     <ul class="mm-nav">
       <li><a href="#planes" class="mm-nav-item">Planes</a></li>
-      <li><a href="#beneficios" class="mm-nav-item">Beneficios</a></li>
-      <li><a href="#contacto" class="mm-nav-item">Contratar</a></li>
     </ul>
     <div class="mm-footer">
       <a href="#contacto" class="btn-mm-cta mm-nav-item">Contratar ahora</a>
