@@ -554,8 +554,23 @@
     .timed-lead-modal.is-open .timed-lead-dialog{transform:none}
     .timed-lead-close{position:absolute;z-index:8;top:16px;right:16px;width:48px;height:48px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff;font-size:30px;line-height:1;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.28);transition:transform .2s ease,background .2s ease}
     .timed-lead-close:hover{transform:scale(1.08);background:var(--red-dark)}
-    .timed-lead-promo{min-width:0;height:100%;background-color:#650707;background-image:url('img/oferta-modal-natural-v2.png');background-image:-webkit-image-set(url('img/oferta-modal-natural-v2.webp') type('image/webp'),url('img/oferta-modal-natural-v2.png') type('image/png'));background-image:image-set(url('img/oferta-modal-natural-v2.webp') type('image/webp'),url('img/oferta-modal-natural-v2.png') type('image/png'));background-position:left center;background-size:auto 100%;background-repeat:no-repeat}
-    .timed-lead-mobile-offer{display:none}
+    /* Oferta del popup armada en HTML (antes era una imagen fija con el precio) */
+    .timed-lead-offer{position:relative;min-width:0;height:100%;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:26px 26px 28px;color:#fff;font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;background-color:#7a0010;background-image:linear-gradient(180deg,rgba(90,0,12,0) 30%,rgba(90,0,12,.82) 62%,#5a000c 100%),url('img/oferta-popup-jugadores.jpg');background-image:linear-gradient(180deg,rgba(90,0,12,0) 30%,rgba(90,0,12,.82) 62%,#5a000c 100%),image-set(url('img/oferta-popup-jugadores.webp') type('image/webp'),url('img/oferta-popup-jugadores.jpg') type('image/jpeg'));background-size:cover;background-position:center top;background-repeat:no-repeat}
+    .tlo-chip{position:absolute;top:22px;left:22px;padding:7px 13px;border-radius:999px;background:#ffd400;color:#1a1a1a;font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+    .tlo-deal{display:flex;gap:10px;align-items:stretch}
+    .tlo-speed,.tlo-price{flex:1;display:flex;flex-direction:column;justify-content:center;border-radius:16px;padding:10px 12px;box-shadow:0 10px 26px rgba(0,0,0,.32)}
+    .tlo-speed{background:#fff;color:var(--red)}
+    .tlo-price{background:var(--red);color:#fff}
+    .tlo-speed b,.tlo-price b{font-size:46px;line-height:.95;font-weight:900;letter-spacing:-.04em;font-style:italic}
+    .tlo-speed b small,.tlo-price b small{font-size:20px;letter-spacing:-.02em}
+    .tlo-speed span,.tlo-price span{font-size:12px;font-weight:700;margin-top:4px;opacity:.85}
+    .tlo-list{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0;padding:0;list-style:none}
+    .tlo-list li{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);font-size:13px;font-weight:700}
+    .tlo-list li::before{content:'✓';color:#ffd400;font-weight:900}
+    .timed-lead-modal .hl-btn{font-size:17px;animation:tlo-pulse 2.4s ease-in-out infinite}
+    @keyframes tlo-pulse{0%,100%{box-shadow:0 8px 22px rgba(228,0,43,.32)}50%{box-shadow:0 8px 22px rgba(228,0,43,.32),0 0 0 8px rgba(228,0,43,.18)}}
+    .tlo-trust{margin:10px 0 0;text-align:center;font-size:12px;color:#cfcfcf}
+    .tlo-trust a{color:#4ee08a;font-weight:700}
     .timed-lead-modal .hero-lead{box-sizing:border-box;position:relative;inset:auto;transform:none;width:100%;min-width:0;max-width:none;height:100%;margin:0;padding:clamp(42px,5vw,70px) clamp(28px,5vw,72px) 38px;border:0;border-radius:0;background:radial-gradient(circle at 50% 36%,#242424 0,#181818 58%,#121212 100%);color:#fff;box-shadow:none;display:flex;flex-direction:column;justify-content:center}
     .timed-lead-modal .hl-title{max-width:520px;margin-inline:auto;font-family:'Montserrat','Open Sans',sans-serif;font-size:clamp(27px,3.1vw,42px);line-height:1.08;letter-spacing:-.035em;text-align:center;color:#fff}
     .timed-lead-modal .hl-sub{max-width:520px;margin:0 auto 24px;font-size:clamp(14px,1.3vw,17px);line-height:1.45;text-align:center;color:#fff}
@@ -571,11 +586,17 @@
     @media(max-width:640px){
       .timed-lead-modal{padding:16px 12px calc(16px + env(safe-area-inset-bottom))}
       .timed-lead-dialog{display:block;height:auto;max-height:calc(100dvh - 32px - env(safe-area-inset-bottom));border-radius:22px;overflow-y:auto;background:#171717}
-      /* La creatividad contiene campos dibujados: se oculta en móvil para no duplicar el formulario real. */
-      .timed-lead-promo{display:none}
-      .timed-lead-mobile-offer{display:grid;gap:5px;padding:24px 68px 16px 20px;background:linear-gradient(135deg,#5f0611 0%,#a00b1c 100%);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
-      .timed-lead-mobile-offer strong{font-size:clamp(17px,5.1vw,22px);line-height:1.16;letter-spacing:-.02em}
-      .timed-lead-mobile-offer span{font-size:12px;line-height:1.35;color:rgba(255,255,255,.88)}
+      /* Móvil: oferta compacta arriba, con los jugadores a la derecha */
+      .timed-lead-offer{height:auto;gap:9px;padding:52px 16px 16px;background-image:linear-gradient(90deg,#6a000e 0%,rgba(106,0,14,.92) 52%,rgba(106,0,14,.2) 100%),url('img/oferta-popup-jugadores.jpg');background-image:linear-gradient(90deg,#6a000e 0%,rgba(106,0,14,.92) 52%,rgba(106,0,14,.2) 100%),image-set(url('img/oferta-popup-jugadores.webp') type('image/webp'),url('img/oferta-popup-jugadores.jpg') type('image/jpeg'));background-size:cover;background-position:right 20%}
+      .tlo-chip{top:14px;left:14px;font-size:11px;padding:6px 11px}
+      .tlo-deal{gap:8px}
+      .tlo-speed,.tlo-price{border-radius:12px;padding:7px 10px}
+      .tlo-speed b,.tlo-price b{font-size:clamp(28px,9vw,36px)}
+      .tlo-speed b small,.tlo-price b small{font-size:14px}
+      .tlo-speed span,.tlo-price span{font-size:10.5px;margin-top:2px}
+      .tlo-list{gap:5px}
+      .tlo-list li{font-size:11px;padding:3px 8px}
+      .tlo-trust{font-size:11px;margin-top:8px}
       .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:18px 18px 20px;justify-content:flex-start;border-radius:0 0 22px 22px;background:
         radial-gradient(circle at 50% -15%,rgba(228,0,43,.32),transparent 46%),
         linear-gradient(155deg,#211315 0%,#171717 48%,#111 100%)}
@@ -2035,14 +2056,20 @@
       overlay.setAttribute('role','dialog');
       overlay.setAttribute('aria-modal','true');
       overlay.setAttribute('aria-label','Solicita una llamada gratis');
-      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-promo" aria-label="Oferta increíble de Internet"></div><div class="timed-lead-mobile-offer"><strong>🔥 ¡400 Mbps por S/49 al mes durante 6 meses!</strong><span>Disfruta más de 30 canales en vivo, Universal+ y Claro video.</span></div></div>`;
+      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-offer"><span class="tlo-chip">🔥 Promo Fibra Óptica</span><div class="tlo-deal"><div class="tlo-speed"><b>300<small> Mbps</small></b><span>x 12 meses, luego 150 Mbps</span></div><div class="tlo-price"><b><small>S/</small>39<small> al mes</small></b><span>x 12 meses, luego S/ 44</span></div></div><ul class="tlo-list"><li>Universal+</li><li>Claro video</li><li>+30 canales en vivo</li><li>Instalación gratis</li></ul></div></div>`;
       document.body.appendChild(overlay);
       const dialog = overlay.querySelector('.timed-lead-dialog');
       const closeButton = overlay.querySelector('.timed-lead-close');
       const timedTitle = timedLead.querySelector('.hl-title');
       const timedSubtitle = timedLead.querySelector('.hl-sub');
+      const timedButton = timedLead.querySelector('.hl-btn');
+      const timedPlan = timedLead.querySelector('input[name="plan"]');
       const originalTitle = timedTitle?.textContent;
       const originalSubtitle = timedSubtitle?.textContent;
+      const originalPlan = timedPlan?.value;
+      const trust = document.createElement('p');
+      trust.className = 'tlo-trust';
+      trust.innerHTML = 'Llamada gratis y sin compromiso · ¿Prefieres chatear? <a href="' + waLink('¡Hola! Quiero la promo de 300 Mbps a S/39 al mes.') + '" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>';
       let shown = false;
       let previousFocus = null;
 
@@ -2050,8 +2077,11 @@
         if(shown) return;
         shown = true;
         previousFocus = document.activeElement;
-        if(timedTitle) timedTitle.textContent = '¡No desaproveches esta oferta!';
-        if(timedSubtitle) timedSubtitle.textContent = 'Te llamamos gratis. Déjanos tu número y descubre las promociones disponibles para ti.';
+        if(timedTitle) timedTitle.textContent = '¡Pide tus 300 Mbps a S/39!';
+        if(timedSubtitle) timedSubtitle.textContent = 'Déjanos tu celular: un asesor te llama gratis, revisa la cobertura en tu dirección y te ayuda a contratar.';
+        if(timedButton) timedButton.textContent = '¡Quiero que me llamen!';
+        if(timedPlan) timedPlan.value = 'Popup: promo 300 Mbps a S/39 x 12 meses';
+        timedLead.appendChild(trust);
         dialog.appendChild(timedLead);
         overlay.classList.add('is-open');
         document.body.classList.add('lead-modal-open');
@@ -2064,10 +2094,19 @@
         originParent.insertBefore(timedLead,originNext);
         if(timedTitle) timedTitle.textContent = originalTitle;
         if(timedSubtitle) timedSubtitle.textContent = originalSubtitle;
+        if(timedButton) timedButton.textContent = 'Solicitar llamada';
+        if(timedPlan) timedPlan.value = originalPlan;
+        trust.remove();
         previousFocus?.focus?.();
       };
 
       window.setTimeout(openTimedLead,30000);
+      // En PC también se abre si el visitante lleva la mano a cerrar o cambiar de pestaña.
+      window.setTimeout(() => {
+        document.addEventListener('mouseout',event => {
+          if(!event.relatedTarget && event.clientY <= 0 && window.matchMedia('(pointer:fine)').matches) openTimedLead();
+        });
+      },10000);
       closeButton.addEventListener('click',closeTimedLead);
       overlay.addEventListener('click',event => { if(event.target === overlay) closeTimedLead(); });
       document.addEventListener('keydown',event => {
