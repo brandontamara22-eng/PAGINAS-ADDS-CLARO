@@ -548,6 +548,26 @@
     .modal-cerrar:hover{background:var(--red);color:#fff}
 
     /* EMPRESAS (RUC 10 y RUC 20): la pestaña "Empresas" cambia la página a modo empresas */
+    /* Banner principal de empresas: la foto ocupa todo el ancho y el título va sobre la zona oscura izquierda. */
+    .emp-banner{display:none;position:relative;padding:0;background:#0b0b0b;color:#fff;overflow:hidden}
+    .emp-banner-img{display:block}
+    body.modo-empresas .emp-hero{padding-top:26px}
+    body.modo-empresas .emp-grid{align-items:start}
+    body.modo-empresas .emp-banner{display:block}
+    .emp-banner-img img{display:block;width:100%;height:auto;min-height:300px;object-fit:cover;object-position:62% center}
+    .emp-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,11,.85) 0%,rgba(11,11,11,.55) 28%,transparent 46%),linear-gradient(0deg,#0b0b0b 0%,transparent 22%);pointer-events:none}
+    .emp-banner-copy{position:absolute;z-index:1;left:0;right:0;top:50%;transform:translateY(-50%)}
+    .emp-banner-copy h1{max-width:460px;font-family:'Montserrat','Open Sans',system-ui,sans-serif;font-size:clamp(30px,3.6vw,52px);font-weight:900;letter-spacing:-.04em;line-height:1.04;margin:14px 0 10px}
+    .emp-banner-copy h1 em{font-style:normal;color:#ff4b55}
+    .emp-banner-copy p{margin:0;max-width:420px;font-size:16px;color:rgba(255,255,255,.78)}
+    @media(max-width:760px){
+      .emp-banner-img img{min-height:0;aspect-ratio:700/391}
+      .emp-banner::after{display:none}
+      .emp-banner-img img{-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 72%,transparent 100%)}
+      .emp-banner-copy{position:relative;transform:none;padding-top:6px;padding-bottom:4px}
+      .emp-banner-copy h1{font-size:clamp(30px,8.6vw,38px)}
+      .emp-banner-copy p{font-size:15px}
+    }
     .emp-hero{display:none;position:relative;overflow:hidden;color:#fff;padding:56px 0 60px;background:radial-gradient(circle at 85% 10%,rgba(227,38,46,.38),transparent 42%),radial-gradient(circle at 0% 100%,rgba(227,38,46,.22),transparent 40%),linear-gradient(135deg,#151515 0%,#1d1d1f 55%,#111 100%)}
     body.modo-empresas .emp-hero{display:block}
     body.modo-empresas .hero,body.modo-empresas #beneficios{display:none}
@@ -557,7 +577,7 @@
     .emp-copy h1 em{font-style:normal;color:#ff4b55}
     .emp-lead{max-width:560px;font-size:16px;line-height:1.6;color:rgba(255,255,255,.82);margin:0 0 26px}
     .emp-perks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 26px;padding:0;list-style:none;max-width:640px}
-    .emp-perks li{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-left:3px solid var(--red)}
+    .emp-perks li{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
     .emp-perks b{font-size:16px;font-weight:800}
     .emp-perks span{font-size:13px;color:rgba(255,255,255,.7);line-height:1.4}
     .emp-link{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;border-bottom:2px solid var(--red);padding-bottom:3px}
@@ -575,16 +595,21 @@
     .emp-benefits-head p{margin:0;color:#a3a3a3;line-height:1.6}
     .emp-benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#262626;border:1px solid #262626;border-radius:18px;overflow:hidden}
     .emp-benefit{display:flex;flex-direction:column;gap:10px;padding:28px 26px;background:#151515}
-    .emp-benefit-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:rgba(227,38,46,.12);color:#ff5b62}
-    .emp-benefit-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .emp-benefit{transition:background .2s ease}
+    .emp-benefit:hover{background:#1a1a1a}
+    /* Cifra grande en blanco como protagonista; el rojo se reserva para precios y botones. */
+    .emp-benefit .emp-fig{display:flex;align-items:baseline;gap:7px;margin:0 0 4px;color:#fff;line-height:1}
+    .emp-fig b{font-family:'Montserrat','Open Sans',system-ui,sans-serif;font-size:44px;font-weight:800;letter-spacing:-.04em}
+    .emp-fig span{font-size:14px;font-weight:600;color:#8f8f8f}
+    .emp-benefit .emp-fig small{margin:0;padding:0;border:0;font-size:12px;font-weight:600;color:#8f8f8f;text-transform:uppercase;letter-spacing:.08em}
     .emp-benefit h3{margin:4px 0 0;font-size:18px;letter-spacing:-.01em;color:#fff}
     .emp-benefit p{margin:0;font-size:14px;line-height:1.6;color:#b9b9b9}
-    .emp-benefit small{margin-top:auto;padding-top:12px;border-top:1px solid #262626;font-size:12px;font-weight:600;color:#ff7a80}
+    .emp-benefit small{margin-top:auto;padding-top:12px;border-top:1px solid #262626;font-size:12px;font-weight:600;color:#8f8f8f}
     .emp-steps{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;margin-top:36px;padding:26px 28px;border:1px solid #262626;border-radius:18px;background:#0d0d0d}
     .emp-steps-title{margin:0;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#f1f1f1;padding-left:10px;border-left:3px solid var(--red)}
     .emp-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none;counter-reset:paso}
     .emp-steps li{display:flex;flex-direction:column;gap:4px;padding-left:44px;position:relative;counter-increment:paso}
-    .emp-steps li::before{content:counter(paso);position:absolute;left:0;top:0;width:32px;height:32px;display:grid;place-items:center;border:1.5px solid var(--red);border-radius:50%;font-weight:800;font-size:14px;color:#fff}
+    .emp-steps li::before{content:counter(paso);position:absolute;left:0;top:0;width:32px;height:32px;display:grid;place-items:center;border:1.5px solid #4a4a4a;border-radius:50%;font-weight:800;font-size:14px;color:#fff}
     .emp-steps b{font-size:15px;color:#fff}
     .emp-steps li span{font-size:13px;line-height:1.5;color:#a3a3a3}
     .emp-steps-cta{white-space:nowrap}
@@ -597,11 +622,10 @@
       .emp-benefits{padding:44px 0 48px}
       .emp-benefits-grid{grid-template-columns:1fr}
       .emp-benefits-head{margin-bottom:24px}
-      .emp-benefit{display:grid;grid-template-columns:36px 1fr;column-gap:12px;row-gap:6px;padding:18px 16px}
-      .emp-benefit-icon{width:36px;height:36px;border-radius:10px;grid-row:span 1}
-      .emp-benefit-icon svg{width:20px;height:20px}
-      .emp-benefit h3{margin:0;font-size:16px;align-self:center}
-      .emp-benefit p,.emp-benefit small{grid-column:1 / -1;font-size:13px}
+      .emp-benefit{gap:6px;padding:20px 18px}
+      .emp-fig b{font-size:34px}
+      .emp-benefit h3{margin:0;font-size:16px}
+      .emp-benefit p{font-size:13px}
       .emp-benefit small{font-size:11.5px;padding-top:8px}
       .emp-steps{padding:22px 20px}
       .emp-steps ol{grid-template-columns:1fr;gap:16px}
@@ -669,10 +693,10 @@
     body.modo-empresas .plans-arrow{background:#1b1b1b;border-color:#333;color:#fff}
     body.modo-empresas .plans-arrow:hover,body.modo-empresas .plans-arrow:focus-visible{background:var(--red)}
     body.modo-empresas .plans-progress{background:#262626}
-    body.modo-empresas .emp-tools-list li{background:#1b1b1b;border-color:#2c2c2c;border-left-color:var(--red)}
+    body.modo-empresas .emp-tools-list li{background:#1b1b1b;border-color:#2c2c2c;border-left-color:#2c2c2c}
     body.modo-empresas .emp-tools-list b{color:#fff}
     body.modo-empresas .emp-tools-list span{color:#a3a3a3}
-    body.modo-empresas .emp-tools-list em{color:#ff5b62}
+    body.modo-empresas .emp-tools-list em{color:#8f8f8f}
     body.modo-empresas .emp-tools-img img{box-shadow:0 22px 50px rgba(0,0,0,.55)}
     body.modo-empresas .faq-item{border-bottom-color:#262626}
     body.modo-empresas .faq-q{color:#f1f1f1}
@@ -911,12 +935,23 @@
     </section>
 
     <!-- ===== EMPRESAS (RUC 10 y RUC 20): se muestra con la pestaña "Empresas" o ?empresas ===== -->
+    <section class="emp-banner" aria-label="Claro Empresas">
+      <picture class="emp-banner-img">
+        <source media="(max-width: 760px)" srcset="img/empresas-banner-mobile.webp" type="image/webp">
+        <source media="(max-width: 760px)" srcset="img/empresas-banner-mobile.jpg">
+        <source srcset="img/empresas-banner.webp" type="image/webp">
+        <img src="img/empresas-banner.jpg" alt="Internet y herramientas digitales Claro Empresas: Claro Drive Negocio, Claro Backup, Seguridad Empresas, Tienda Virtual, Email Empresas y Microsoft 365" width="2000" height="391">
+      </picture>
+      <div class="wrap emp-banner-copy">
+        <span class="emp-eyebrow">Claro Empresas · RUC 10 y RUC 20</span>
+        <h1>Fibra óptica para <em>tu negocio</em></h1>
+        <p>Internet, telefonía y herramientas digitales para empresas</p>
+      </div>
+    </section>
     <section class="emp-hero" id="empresas" aria-label="Planes Claro Empresas">
       <div class="wrap emp-grid">
         <div class="emp-copy">
-          <span class="emp-eyebrow">Claro Empresas · RUC 10 y RUC 20</span>
-          <h1>Fibra óptica para <em>tu negocio</em></h1>
-          <p class="emp-lead">Internet de fibra óptica, telefonía y TV con precios para empresas y negocios. Un asesor empresarial te ayuda a elegir el plan y revisa la cobertura en tu local.</p>
+          <p class="emp-lead">Precios para empresas y negocios con RUC 10 o 20. Un asesor empresarial te ayuda a elegir el plan y revisa la cobertura en tu local.</p>
           <ul class="emp-perks">
             <li><b>1000 Mbps x 12 meses</b><span>en planes desde 600 Mbps</span></li>
             <li><b>Hasta 6 herramientas digitales</b><span>Microsoft 365, correo, nube, backup, antivirus y tienda virtual</span></li>
@@ -954,37 +989,37 @@
         </div>
         <div class="emp-benefits-grid">
           <article class="emp-benefit">
-            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17V7m0 0-3 3m3-3 3 3"/><path d="M17 7v10m0 0-3-3m3 3 3-3"/></svg></span>
+            <p class="emp-fig"><small>hasta</small><b>5</b><span>Gbps</span></p>
             <h3>Fibra óptica simétrica</h3>
             <p>Subes y descargas a la misma velocidad: ideal para videollamadas, respaldos en la nube y sistemas en línea. Velocidad mínima garantizada del 70% de lo contratado.</p>
             <small>Planes Power de hasta 5 Gbps en San Isidro y Miraflores</small>
           </article>
           <article class="emp-benefit">
-            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 15a8 8 0 1 1 16 0"/><path d="m12 15 4-5"/><path d="M4 19h16"/></svg></span>
+            <p class="emp-fig"><b>1000</b><span>Mbps</span></p>
             <h3>Bono de velocidad</h3>
             <p>Navega a 1000 Mbps por 12 meses en planes desde 600 Mbps. Si tu negocio también es Full Claro, tu velocidad sube de forma permanente.</p>
             <small>El bono se activa dentro de las 24 horas tras la instalación</small>
           </article>
           <article class="emp-benefit">
-            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.6-8A6 6 0 0 1 18 8.5a4.5 4.5 0 0 1-.5 9.5H7z"/><path d="m9.5 13.5 2 2 3.5-4"/></svg></span>
+            <p class="emp-fig"><b>6</b><span>herramientas</span></p>
             <h3>Hasta 6 herramientas digitales</h3>
             <p>Microsoft 365, correo con el dominio de tu empresa, Claro Drive, Backup, antivirus y tienda virtual, según la velocidad contratada.</p>
             <small>Si no tienes dominio propio, te damos uno .com gratis</small>
           </article>
           <article class="emp-benefit">
-            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>
+            <p class="emp-fig"><b>5000</b><span>minutos</span></p>
             <h3>Telefonía fija para tu negocio</h3>
             <p>Llamadas ilimitadas a Claro, 5000 minutos a cualquier operador nacional y 100 minutos de larga distancia a EE. UU., Canadá, Puerto Rico y México.</p>
             <small>Línea apta para POS y portabilidad de tu número</small>
           </article>
           <article class="emp-benefit">
-            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3 3"/><path d="M3 21l3.5-1 11-11a2.1 2.1 0 0 0-3-3l-11 11z"/><path d="M15 21h6"/></svg></span>
+            <p class="emp-fig"><b>S/ 0</b><span>instalación</span></p>
             <h3>Instalación sin costo</h3>
             <p>S/ 0 de instalación en Internet, Internet + Telefonía y paquetes con TV, tanto para alta nueva como para portabilidad.</p>
             <small>Sujeto a evaluación crediticia</small>
           </article>
           <article class="emp-benefit">
-            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 9a16 16 0 0 1 20 0"/><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><path d="M12 20h.01"/></svg></span>
+            <p class="emp-fig"><b>5</b><span>puntos Mesh</span></p>
             <h3>WiFi 360 en todo tu local</h3>
             <p>Hasta 5 puntos WiFi 360 Mesh para cubrir oficina, almacén o tienda. Desde 400 Mbps, el primero es sin costo.</p>
             <small>30% de descuento por 6 meses en puntos adicionales (fibra óptica)</small>
