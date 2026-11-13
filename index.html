@@ -567,6 +567,46 @@
     .emp-form-sub{font-size:13px;font-weight:600;color:var(--mid);text-align:center;line-height:1.45;margin:0 0 14px}
     .emp-form-card input[type="text"],.emp-form-card input[type="tel"]{width:100%;padding:13px 14px;border:1.5px solid var(--border);border-radius:11px;font-size:15px;color:var(--dark);outline:none;text-align:center;font-family:inherit}
     .emp-form-card input[type="text"]:focus,.emp-form-card input[type="tel"]:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(228,0,43,.12)}
+    .emp-benefits{display:none;padding:68px 0 72px;background:#111;color:#fff;border-top:1px solid #222}
+    body.modo-empresas .emp-benefits{display:block}
+    body.modo-empresas .stats-bar{display:none}
+    .emp-benefits-head{max-width:720px;margin:0 0 36px}
+    .emp-benefits-head h2{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.035em;line-height:1.12;margin:14px 0 10px;color:#fff}
+    .emp-benefits-head p{margin:0;color:#a3a3a3;line-height:1.6}
+    .emp-benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#262626;border:1px solid #262626;border-radius:18px;overflow:hidden}
+    .emp-benefit{display:flex;flex-direction:column;gap:10px;padding:28px 26px;background:#151515}
+    .emp-benefit-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:rgba(227,38,46,.12);color:#ff5b62}
+    .emp-benefit-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .emp-benefit h3{margin:4px 0 0;font-size:18px;letter-spacing:-.01em;color:#fff}
+    .emp-benefit p{margin:0;font-size:14px;line-height:1.6;color:#b9b9b9}
+    .emp-benefit small{margin-top:auto;padding-top:12px;border-top:1px solid #262626;font-size:12px;font-weight:600;color:#ff7a80}
+    .emp-steps{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;margin-top:36px;padding:26px 28px;border:1px solid #262626;border-radius:18px;background:#0d0d0d}
+    .emp-steps-title{margin:0;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#f1f1f1;padding-left:10px;border-left:3px solid var(--red)}
+    .emp-steps ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none;counter-reset:paso}
+    .emp-steps li{display:flex;flex-direction:column;gap:4px;padding-left:44px;position:relative;counter-increment:paso}
+    .emp-steps li::before{content:counter(paso);position:absolute;left:0;top:0;width:32px;height:32px;display:grid;place-items:center;border:1.5px solid var(--red);border-radius:50%;font-weight:800;font-size:14px;color:#fff}
+    .emp-steps b{font-size:15px;color:#fff}
+    .emp-steps li span{font-size:13px;line-height:1.5;color:#a3a3a3}
+    .emp-steps-cta{white-space:nowrap}
+    @media(max-width:1000px){
+      .emp-benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .emp-steps{grid-template-columns:1fr;gap:20px}
+      .emp-steps-cta{justify-self:start}
+    }
+    @media(max-width:640px){
+      .emp-benefits{padding:44px 0 48px}
+      .emp-benefits-grid{grid-template-columns:1fr}
+      .emp-benefits-head{margin-bottom:24px}
+      .emp-benefit{display:grid;grid-template-columns:36px 1fr;column-gap:12px;row-gap:6px;padding:18px 16px}
+      .emp-benefit-icon{width:36px;height:36px;border-radius:10px;grid-row:span 1}
+      .emp-benefit-icon svg{width:20px;height:20px}
+      .emp-benefit h3{margin:0;font-size:16px;align-self:center}
+      .emp-benefit p,.emp-benefit small{grid-column:1 / -1;font-size:13px}
+      .emp-benefit small{font-size:11.5px;padding-top:8px}
+      .emp-steps{padding:22px 20px}
+      .emp-steps ol{grid-template-columns:1fr;gap:16px}
+      .emp-steps-cta{width:100%;justify-content:center}
+    }
     .emp-tools{display:none;padding:72px 0;background:#f7f7f8}
     body.modo-empresas .emp-tools{display:block}
     .emp-tools-grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:56px;align-items:center}
@@ -876,7 +916,7 @@
         <div class="emp-copy">
           <span class="emp-eyebrow">Claro Empresas · RUC 10 y RUC 20</span>
           <h1>Fibra óptica para <em>tu negocio</em></h1>
-          <p class="emp-lead">Internet simétrico, telefonía y TV con precios para empresas y negocios. Un asesor empresarial te ayuda a elegir el plan y revisa la cobertura en tu local.</p>
+          <p class="emp-lead">Internet de fibra óptica, telefonía y TV con precios para empresas y negocios. Un asesor empresarial te ayuda a elegir el plan y revisa la cobertura en tu local.</p>
           <ul class="emp-perks">
             <li><b>1000 Mbps x 12 meses</b><span>en planes desde 600 Mbps</span></li>
             <li><b>Hasta 6 herramientas digitales</b><span>Microsoft 365, correo, nube, backup, antivirus y tienda virtual</span></li>
@@ -900,6 +940,64 @@
             <button type="submit" class="hl-btn">Quiero que me llamen</button>
             <div class="hl-msg" id="empMsg"></div>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EMPRESAS: BENEFICIOS + CÓMO CONTRATAR (solo en modo empresas) ===== -->
+    <section class="emp-benefits" aria-label="Beneficios Claro Empresas">
+      <div class="wrap">
+        <div class="emp-benefits-head">
+          <span class="emp-eyebrow">Beneficios para tu empresa</span>
+          <h2>Conectividad y herramientas pensadas para trabajar</h2>
+          <p>Todo lo que incluye tu plan Claro Empresas, sujeto a cobertura y evaluación crediticia.</p>
+        </div>
+        <div class="emp-benefits-grid">
+          <article class="emp-benefit">
+            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17V7m0 0-3 3m3-3 3 3"/><path d="M17 7v10m0 0-3-3m3 3 3-3"/></svg></span>
+            <h3>Fibra óptica simétrica</h3>
+            <p>Subes y descargas a la misma velocidad: ideal para videollamadas, respaldos en la nube y sistemas en línea. Velocidad mínima garantizada del 70% de lo contratado.</p>
+            <small>Planes Power de hasta 5 Gbps en San Isidro y Miraflores</small>
+          </article>
+          <article class="emp-benefit">
+            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 15a8 8 0 1 1 16 0"/><path d="m12 15 4-5"/><path d="M4 19h16"/></svg></span>
+            <h3>Bono de velocidad</h3>
+            <p>Navega a 1000 Mbps por 12 meses en planes desde 600 Mbps. Si tu negocio también es Full Claro, tu velocidad sube de forma permanente.</p>
+            <small>El bono se activa dentro de las 24 horas tras la instalación</small>
+          </article>
+          <article class="emp-benefit">
+            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.6-8A6 6 0 0 1 18 8.5a4.5 4.5 0 0 1-.5 9.5H7z"/><path d="m9.5 13.5 2 2 3.5-4"/></svg></span>
+            <h3>Hasta 6 herramientas digitales</h3>
+            <p>Microsoft 365, correo con el dominio de tu empresa, Claro Drive, Backup, antivirus y tienda virtual, según la velocidad contratada.</p>
+            <small>Si no tienes dominio propio, te damos uno .com gratis</small>
+          </article>
+          <article class="emp-benefit">
+            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>
+            <h3>Telefonía fija para tu negocio</h3>
+            <p>Llamadas ilimitadas a Claro, 5000 minutos a cualquier operador nacional y 100 minutos de larga distancia a EE. UU., Canadá, Puerto Rico y México.</p>
+            <small>Línea apta para POS y portabilidad de tu número</small>
+          </article>
+          <article class="emp-benefit">
+            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3 3"/><path d="M3 21l3.5-1 11-11a2.1 2.1 0 0 0-3-3l-11 11z"/><path d="M15 21h6"/></svg></span>
+            <h3>Instalación sin costo</h3>
+            <p>S/ 0 de instalación en Internet, Internet + Telefonía y paquetes con TV, tanto para alta nueva como para portabilidad.</p>
+            <small>Sujeto a evaluación crediticia</small>
+          </article>
+          <article class="emp-benefit">
+            <span class="emp-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 9a16 16 0 0 1 20 0"/><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><path d="M12 20h.01"/></svg></span>
+            <h3>WiFi 360 en todo tu local</h3>
+            <p>Hasta 5 puntos WiFi 360 Mesh para cubrir oficina, almacén o tienda. Desde 400 Mbps, el primero es sin costo.</p>
+            <small>30% de descuento por 6 meses en puntos adicionales (fibra óptica)</small>
+          </article>
+        </div>
+        <div class="emp-steps">
+          <h3 class="emp-steps-title">Cómo contratar</h3>
+          <ol>
+            <li><b>Envía tu RUC</b><span>Déjanos tu RUC 10 o 20 y tu celular; un asesor empresarial te contacta.</span></li>
+            <li><b>Validamos tu dirección</b><span>Revisamos la cobertura en tu local y te proponemos el plan adecuado.</span></li>
+            <li><b>Instalamos y activamos</b><span>Instalación técnica en tu local y bono de velocidad activo en 24 horas.</span></li>
+          </ol>
+          <a href="#empresas" class="btn emp-steps-cta">Solicitar propuesta</a>
         </div>
       </div>
     </section>
@@ -1897,7 +1995,8 @@
       const isSuperior = /Superior Pro/i.test(planDescription);
       const isBasico = /Básico Pro/i.test(planDescription);
       const isEmpresa = card.dataset.segmento === 'empresas';
-      const benefits = isEmpresa ? ['Velocidad de subida y bajada simétrica'] : ['Velocidad de subida y bajada simétrica', 'Claro Video incluido', 'Universal+ incluido'];
+      /* Empresas: la simetría solo aplica en fibra óptica (en coaxial HFC la subida es de 50 Mbps). */
+      const benefits = isEmpresa ? ['Subida y bajada simétrica en fibra óptica (FTTH)'] : ['Velocidad de subida y bajada simétrica', 'Claro Video incluido', 'Universal+ incluido'];
 
       if(type === 'telefonia' || type === 'trio'){
         benefits.push('Llamadas ilimitadas a Claro');
