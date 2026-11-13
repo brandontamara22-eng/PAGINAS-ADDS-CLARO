@@ -550,7 +550,7 @@
     /* EMPRESAS (RUC 10 y RUC 20): la pestaña "Empresas" cambia la página a modo empresas */
     .emp-hero{display:none;position:relative;overflow:hidden;color:#fff;padding:56px 0 60px;background:radial-gradient(circle at 85% 10%,rgba(227,38,46,.38),transparent 42%),radial-gradient(circle at 0% 100%,rgba(227,38,46,.22),transparent 40%),linear-gradient(135deg,#151515 0%,#1d1d1f 55%,#111 100%)}
     body.modo-empresas .emp-hero{display:block}
-    body.modo-empresas .hero,body.modo-empresas #beneficios,body.modo-empresas .tab[data-filter="promociones"]{display:none}
+    body.modo-empresas .hero,body.modo-empresas #beneficios{display:none}
     .emp-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:48px;align-items:center}
     .emp-eyebrow{display:inline-block;padding-left:10px;border-left:3px solid var(--red);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#f1f1f1}
     .emp-copy h1{font-family:'Montserrat','Open Sans',system-ui,sans-serif;font-size:clamp(32px,4.2vw,54px);font-weight:900;letter-spacing:-.04em;line-height:1.04;margin:16px 0 14px}
@@ -567,7 +567,23 @@
     .emp-form-sub{font-size:13px;font-weight:600;color:var(--mid);text-align:center;line-height:1.45;margin:0 0 14px}
     .emp-form-card input[type="text"],.emp-form-card input[type="tel"]{width:100%;padding:13px 14px;border:1.5px solid var(--border);border-radius:11px;font-size:15px;color:var(--dark);outline:none;text-align:center;font-family:inherit}
     .emp-form-card input[type="text"]:focus,.emp-form-card input[type="tel"]:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(228,0,43,.12)}
+    .emp-tools{display:none;padding:72px 0;background:#f7f7f8}
+    body.modo-empresas .emp-tools{display:block}
+    .emp-tools-grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:56px;align-items:center}
+    .emp-tools-img img{display:block;width:100%;height:auto;border-radius:22px;box-shadow:0 22px 50px rgba(16,24,40,.16)}
+    .emp-eyebrow--dark{color:var(--ink)}
+    .emp-tools-copy h2{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.04em;line-height:1.1;margin:14px 0 10px;color:var(--ink)}
+    .emp-tools-copy > p{color:var(--muted);line-height:1.6;margin:0 0 22px}
+    .emp-tools-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 26px;padding:0;list-style:none}
+    .emp-tools-list li{display:flex;flex-direction:column;gap:3px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--red);border-radius:14px}
+    .emp-tools-list b{font-size:15px;color:var(--ink)}
+    .emp-tools-list span{font-size:13px;color:var(--muted);line-height:1.45}
+    .emp-tools-list em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--red);margin-top:2px}
+    .emp-tools-cta{display:inline-flex}
     @media(max-width:900px){
+      .emp-tools{padding:44px 0}
+      .emp-tools-grid{grid-template-columns:1fr;gap:28px}
+      .emp-tools-img{max-width:420px;width:100%;margin:0 auto}
       .emp-hero{padding:34px 0 40px}
       .emp-grid{grid-template-columns:1fr;gap:28px}
       .emp-form-card{max-width:460px;width:100%;margin:0 auto}
@@ -578,6 +594,9 @@
       .emp-perks b{font-size:13.5px;line-height:1.25}
       .emp-perks span{font-size:11.5px;line-height:1.3}
       .emp-perks li:nth-child(2) span{display:none}
+      .emp-tools-list{grid-template-columns:1fr;gap:8px}
+      .emp-tools-list li{padding:11px 14px}
+      .emp-tools-cta{width:100%;justify-content:center}
       .emp-lead{font-size:15px;margin-bottom:20px}
     }
 
@@ -1579,6 +1598,30 @@
     </section>
 
     <!-- BENEFICIOS -->
+    <!-- ===== EMPRESAS: HERRAMIENTAS DIGITALES (solo en modo empresas) ===== -->
+    <section class="emp-tools" id="herramientas" aria-label="Herramientas digitales Claro Empresas">
+      <div class="wrap emp-tools-grid">
+        <picture class="emp-tools-img">
+          <source srcset="img/empresas-6-herramientas.webp" type="image/webp">
+          <img src="img/empresas-6-herramientas.jpg" alt="Incluyen hasta 6 herramientas que harán crecer tu negocio: Claro Drive Negocio, Claro Backup, Seguridad Empresas, Microsoft 365, Tienda Virtual y Email Empresas" loading="lazy" width="760" height="983">
+        </picture>
+        <div class="emp-tools-copy">
+          <span class="emp-eyebrow emp-eyebrow--dark">Incluido en tu plan de internet</span>
+          <h2>Hasta 6 herramientas digitales para tu negocio</h2>
+          <p>Según la velocidad contratada: 200 Mbps incluye 2, 600 Mbps incluye 5 y desde 850 Mbps tienes las 6.</p>
+          <ul class="emp-tools-list">
+            <li><b>Claro Drive Negocio</b><span>100 GB en la nube para guardar y compartir archivos.</span><em>Desde 200 Mbps</em></li>
+            <li><b>Seguridad Empresas</b><span>Antivirus para los equipos del negocio.</span><em>Desde 200 Mbps</em></li>
+            <li><b>Claro Backup</b><span>Copia de seguridad de tus equipos en la nube (15 GB).</span><em>Desde 600 Mbps</em></li>
+            <li><b>Email Empresas</b><span>2 cuentas de correo con tu dominio, 50 GB cada una.</span><em>Desde 600 Mbps</em></li>
+            <li><b>Tienda Virtual</b><span>Tu página web con plantillas listas para vender.</span><em>Desde 600 Mbps</em></li>
+            <li><b>Microsoft 365</b><span>Office en línea, correo de 50 GB y 1 TB en OneDrive.</span><em>Desde 850 Mbps</em></li>
+          </ul>
+          <a href="#empresas" class="btn emp-tools-cta">Quiero una propuesta para mi negocio</a>
+        </div>
+      </div>
+    </section>
+
     <section class="benefits" id="beneficios">
       <div class="wrap">
         <div class="section-head">
@@ -1727,10 +1770,28 @@
       5:'<strong>5 herramientas digitales:</strong> correo, nube, backup, antivirus y tienda virtual',
       2:'<strong>2 herramientas digitales:</strong> Claro Drive (100 GB) y antivirus'
     };
+    /* Ofertas Fija Negocios HFC/FTTH vigentes del 9 al 30 de noviembre, cada una por zona. */
+    const EMPRESAS_PROMOS = [
+      { mbps:600, precio:1, meses:2, regular:89, bono:['1000 Mbps','Por 12 meses · para toda la vida si eres Full Claro'], herramientas:5,
+        zona:'Lima, Arequipa, Santa, Trujillo, Chiclayo, Lambayeque y Piura', destacado:true },
+      { mbps:200, precio:49, meses:6, regular:69, bono:['400 Mbps','Por 6 meses · para toda la vida si eres Full Claro'], herramientas:2,
+        zona:'Apurímac, Loreto, Madre de Dios, Pasco, Amazonas y Tumbes (zonas seleccionadas)' }
+    ];
     (function renderEmpresas(){
       const grid = document.querySelector('.cards');
       if(!grid) return;
       const html = [];
+      EMPRESAS_PROMOS.forEach(promo => {
+        const benefit = [HERRAMIENTAS[promo.herramientas], `<strong>Válido del 9 al 30 de noviembre</strong> en ${promo.zona}`].join('|');
+        html.push(`<article class="card${promo.destacado ? ' featured' : ''}" data-type="promociones" data-segmento="empresas" data-benefit="${benefit.replace(/"/g,'&quot;')}">
+            ${promo.destacado ? '<span class="badge">OFERTA</span>' : ''}
+            <div class="plan-tag"><span class="plan-tag-icon" aria-hidden="true"></span><span class="plan-tag-info"><strong>1 Play</strong><span>Internet fijo · Empresas</span></span></div>
+            <div class="speed">${promo.mbps} <small>Mbps</small></div>
+            <div class="price-block"><span class="price-label">Precio mensual x ${promo.meses} meses</span><div class="price-promo"><span class="currency">S/</span><span class="amount">${promo.precio}</span><span class="cents">.00</span></div><span class="price-old">Luego: <s>S/ ${promo.regular}.00</s> mensual</span></div>
+            <div class="bonus-block"><strong>Bono de ${promo.bono[0]}</strong><span>${promo.bono[1]}</span></div>
+            <button class="btn request" data-plan="Empresas (RUC) · Promoción Internet ${promo.mbps} Mbps - S/${promo.precio} x ${promo.meses} meses">Solicitar plan</button>
+          </article>`);
+      });
       EMPRESAS_PLANES.forEach(fila => {
         Object.entries(fila.precios).forEach(([clave,[precio,regular]]) => {
           const tipo = EMPRESAS_TIPOS[clave];
@@ -2031,10 +2092,9 @@
         planesHead.querySelector('h2').textContent = textos.titulo;
         planesHead.querySelector('p').textContent = textos.texto;
       }
-      /* Empresas no tiene "Promociones": abre en Internet. Personas vuelve a Promociones. */
-      const destino = nuevo === 'empresas' ? 'internet' : 'promociones';
-      tabs.forEach(x => x.classList.toggle('active', x.dataset.filter === destino));
-      applyFilter(destino);
+      /* Ambos segmentos abren en Promociones. */
+      tabs.forEach(x => x.classList.toggle('active', x.dataset.filter === 'promociones'));
+      applyFilter('promociones');
       history.replaceState(null, '', nuevo === 'empresas' ? '?empresas' : location.pathname);
     }
     document.querySelectorAll('.top-tab[data-segmento], .mm-nav-item[data-segmento]').forEach(link => link.addEventListener('click', e => {
