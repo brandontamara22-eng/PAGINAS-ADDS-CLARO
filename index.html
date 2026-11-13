@@ -556,7 +556,7 @@
     .timed-lead-close:hover{transform:scale(1.08);background:var(--red-dark)}
     /* Oferta del popup armada en HTML (antes era una imagen fija con el precio) */
     .timed-lead-offer{position:relative;min-width:0;height:100%;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:26px 26px 28px;color:#fff;font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;background-color:#7a0010;background-image:linear-gradient(180deg,rgba(90,0,12,0) 30%,rgba(90,0,12,.82) 62%,#5a000c 100%),url('img/oferta-popup-jugadores.jpg');background-image:linear-gradient(180deg,rgba(90,0,12,0) 30%,rgba(90,0,12,.82) 62%,#5a000c 100%),image-set(url('img/oferta-popup-jugadores.webp') type('image/webp'),url('img/oferta-popup-jugadores.jpg') type('image/jpeg'));background-size:cover;background-position:center top;background-repeat:no-repeat}
-    .tlo-chip{position:absolute;top:22px;left:22px;padding:7px 13px;border-radius:999px;background:#ffd400;color:#1a1a1a;font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+    .tlo-chip{position:absolute;top:24px;left:26px;padding-left:10px;border-left:3px solid #fff;color:#fff;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.45)}
     .tlo-deal{display:flex;gap:10px;align-items:stretch}
     .tlo-speed,.tlo-price{flex:1;display:flex;flex-direction:column;justify-content:center;border-radius:16px;padding:10px 12px;box-shadow:0 10px 26px rgba(0,0,0,.32)}
     .tlo-speed{background:#fff;color:var(--red)}
@@ -564,9 +564,9 @@
     .tlo-speed b,.tlo-price b{font-size:46px;line-height:.95;font-weight:900;letter-spacing:-.04em;font-style:italic}
     .tlo-speed b small,.tlo-price b small{font-size:20px;letter-spacing:-.02em}
     .tlo-speed span,.tlo-price span{font-size:12px;font-weight:700;margin-top:4px;opacity:.85}
-    .tlo-list{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0;padding:0;list-style:none}
-    .tlo-list li{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);font-size:13px;font-weight:700}
-    .tlo-list li::before{content:'✓';color:#ffd400;font-weight:900}
+    .tlo-list{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin:2px 0 0;padding:0;list-style:none}
+    .tlo-list li{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:rgba(255,255,255,.94)}
+    .tlo-list li::before{content:'';flex:0 0 14px;height:8px;margin-top:-3px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) scale(.85)}
     .timed-lead-modal .hl-btn{font-size:17px;animation:tlo-pulse 2.4s ease-in-out infinite}
     @keyframes tlo-pulse{0%,100%{box-shadow:0 8px 22px rgba(228,0,43,.32)}50%{box-shadow:0 8px 22px rgba(228,0,43,.32),0 0 0 8px rgba(228,0,43,.18)}}
     .tlo-trust{margin:10px 0 0;text-align:center;font-size:12px;color:#cfcfcf}
@@ -588,14 +588,15 @@
       .timed-lead-dialog{display:block;height:auto;max-height:calc(100dvh - 32px - env(safe-area-inset-bottom));border-radius:22px;overflow-y:auto;background:#171717}
       /* Móvil: oferta compacta arriba, con los jugadores a la derecha */
       .timed-lead-offer{height:auto;gap:9px;padding:52px 16px 16px;background-image:linear-gradient(90deg,#6a000e 0%,rgba(106,0,14,.92) 52%,rgba(106,0,14,.2) 100%),url('img/oferta-popup-jugadores.jpg');background-image:linear-gradient(90deg,#6a000e 0%,rgba(106,0,14,.92) 52%,rgba(106,0,14,.2) 100%),image-set(url('img/oferta-popup-jugadores.webp') type('image/webp'),url('img/oferta-popup-jugadores.jpg') type('image/jpeg'));background-size:cover;background-position:right 20%}
-      .tlo-chip{top:14px;left:14px;font-size:11px;padding:6px 11px}
+      .tlo-chip{top:18px;left:16px;font-size:11px;padding-left:8px}
       .tlo-deal{gap:8px}
       .tlo-speed,.tlo-price{border-radius:12px;padding:7px 10px}
       .tlo-speed b,.tlo-price b{font-size:clamp(28px,9vw,36px)}
       .tlo-speed b small,.tlo-price b small{font-size:14px}
       .tlo-speed span,.tlo-price span{font-size:10.5px;margin-top:2px}
-      .tlo-list{gap:5px}
-      .tlo-list li{font-size:11px;padding:3px 8px}
+      .tlo-list{gap:4px 10px}
+      .tlo-list li{font-size:12px;gap:6px}
+      .tlo-list li::before{flex-basis:11px;height:6px}
       .tlo-trust{font-size:11px;margin-top:8px}
       .timed-lead-modal .hero-lead{height:auto;min-height:0;padding:18px 18px 20px;justify-content:flex-start;border-radius:0 0 22px 22px;background:
         radial-gradient(circle at 50% -15%,rgba(228,0,43,.32),transparent 46%),
@@ -2056,7 +2057,7 @@
       overlay.setAttribute('role','dialog');
       overlay.setAttribute('aria-modal','true');
       overlay.setAttribute('aria-label','Solicita una llamada gratis');
-      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-offer"><span class="tlo-chip">🔥 Promo Fibra Óptica</span><div class="tlo-deal"><div class="tlo-speed"><b>300<small> Mbps</small></b><span>x 12 meses, luego 150 Mbps</span></div><div class="tlo-price"><b><small>S/</small>39<small> al mes</small></b><span>x 12 meses, luego S/ 44</span></div></div><ul class="tlo-list"><li>Universal+</li><li>Claro video</li><li>+30 canales en vivo</li><li>Instalación gratis</li></ul></div></div>`;
+      overlay.innerHTML = `<div class="timed-lead-dialog"><button type="button" class="timed-lead-close" aria-label="Cerrar formulario">×</button><div class="timed-lead-offer"><span class="tlo-chip">Promo Fibra Óptica</span><div class="tlo-deal"><div class="tlo-speed"><b>300<small> Mbps</small></b><span>x 12 meses, luego 150 Mbps</span></div><div class="tlo-price"><b><small>S/</small>39<small> al mes</small></b><span>x 12 meses, luego S/ 44</span></div></div><ul class="tlo-list"><li>Universal+</li><li>Claro video</li><li>+30 canales en vivo</li><li>Instalación gratis</li></ul></div></div>`;
       document.body.appendChild(overlay);
       const dialog = overlay.querySelector('.timed-lead-dialog');
       const closeButton = overlay.querySelector('.timed-lead-close');
