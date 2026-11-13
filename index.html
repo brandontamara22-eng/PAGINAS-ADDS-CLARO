@@ -580,6 +580,51 @@
     .emp-tools-list span{font-size:13px;color:var(--muted);line-height:1.45}
     .emp-tools-list em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--red);margin-top:2px}
     .emp-tools-cta{display:inline-flex}
+
+    /* Tono negro corporativo en modo empresas (estilo Claro Negocios): fondos negros, acentos rojos. */
+    body.modo-empresas{background:#0b0b0b}
+    body.modo-empresas .stats-bar{background:#111;border-bottom-color:#232323}
+    body.modo-empresas .stat-num abbr,body.modo-empresas .stat-lbl{color:#a3a3a3}
+    body.modo-empresas .stat-sep{background:#2a2a2a}
+    body.modo-empresas #planes,body.modo-empresas #preguntas,body.modo-empresas #contacto{background:#0b0b0b}
+    body.modo-empresas .emp-tools{background:#141414}
+    body.modo-empresas #planes .eyebrow,body.modo-empresas #preguntas .eyebrow{background:rgba(227,38,46,.12);color:#ff5b62;border-color:rgba(227,38,46,.4)}
+    body.modo-empresas .section-head h2,body.modo-empresas .emp-tools-copy h2{color:#fff}
+    body.modo-empresas .section-head p,body.modo-empresas .emp-tools-copy > p{color:#a3a3a3}
+    body.modo-empresas .emp-eyebrow--dark{color:#f1f1f1}
+    body.modo-empresas .tab{background:#161616;border-color:#2c2c2c;color:#d4d4d4}
+    body.modo-empresas .tab-icon{background:rgba(227,38,46,.14)}
+    body.modo-empresas .tab:hover{border-color:var(--red);color:#fff}
+    body.modo-empresas .tab.active{background:linear-gradient(90deg,#b1121b 0%,var(--red) 100%);border-color:var(--red);color:#fff}
+    body.modo-empresas .card{--plan-ink:#fff;--plan-muted:#a9a9a9;background:#151515;border-color:#2a2a2a;border-top-color:var(--red);box-shadow:0 10px 28px rgba(0,0,0,.45)}
+    body.modo-empresas .card.featured{border-color:var(--red)}
+    body.modo-empresas .card:hover{border-color:rgba(227,38,46,.6);box-shadow:0 16px 40px rgba(227,38,46,.18)}
+    body.modo-empresas .plan-tag-icon{background:rgba(227,38,46,.14);border-color:rgba(227,38,46,.4)}
+    body.modo-empresas .price-promo .currency,body.modo-empresas .price-promo .amount,body.modo-empresas .price-promo .cents{color:#ff3b44}
+    body.modo-empresas .price-promo.price-fixed .currency,body.modo-empresas .price-promo.price-fixed .amount,body.modo-empresas .price-promo.price-fixed .cents{color:#fff}
+    body.modo-empresas .bonus-block strong{color:#ff5b62}
+    body.modo-empresas .plan-benefits{background:#1d1d1d;border-color:#2c2c2c}
+    body.modo-empresas .plan-benefit{color:#e2e2e2}
+    body.modo-empresas .plan-benefit strong{color:#fff}
+    body.modo-empresas .plan-benefit svg{color:#ff5b62}
+    body.modo-empresas .includes-label{color:#8f8f8f}
+    body.modo-empresas .includes-logos{background:#1d1d1d;border-color:#2a2a2a}
+    body.modo-empresas .includes-logos::before{background:linear-gradient(90deg,#1d1d1d,transparent)}
+    body.modo-empresas .includes-logos::after{background:linear-gradient(-90deg,#1d1d1d,transparent)}
+    body.modo-empresas .includes-logo-frame{background:#fff}
+    body.modo-empresas .installation{color:#d4d4d4;border-bottom-color:#2a2a2a}
+    body.modo-empresas .plans-arrow{background:#1b1b1b;border-color:#333;color:#fff}
+    body.modo-empresas .plans-arrow:hover,body.modo-empresas .plans-arrow:focus-visible{background:var(--red)}
+    body.modo-empresas .plans-progress{background:#262626}
+    body.modo-empresas .emp-tools-list li{background:#1b1b1b;border-color:#2c2c2c;border-left-color:var(--red)}
+    body.modo-empresas .emp-tools-list b{color:#fff}
+    body.modo-empresas .emp-tools-list span{color:#a3a3a3}
+    body.modo-empresas .emp-tools-list em{color:#ff5b62}
+    body.modo-empresas .emp-tools-img img{box-shadow:0 22px 50px rgba(0,0,0,.55)}
+    body.modo-empresas .faq-item{border-bottom-color:#262626}
+    body.modo-empresas .faq-q{color:#f1f1f1}
+    body.modo-empresas .faq-a{color:#a3a3a3}
+    body.modo-empresas .emp-hero{background:radial-gradient(circle at 88% 0%,rgba(227,38,46,.3),transparent 40%),linear-gradient(135deg,#0b0b0b 0%,#151515 60%,#0b0b0b 100%)}
     @media(max-width:900px){
       .emp-tools{padding:44px 0}
       .emp-tools-grid{grid-template-columns:1fr;gap:28px}
